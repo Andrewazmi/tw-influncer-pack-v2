@@ -10,25 +10,7 @@
     "ar": "ثيم يركز على عرض فيديوهات المؤثرين (Reels و TikTok) مع منتجات قابلة للشراء داخل التجربة.",
     "en": "A theme focused on influencer video commerce with shoppable Reels and TikTok-based product discovery."
   },
-  "features": [
-    "mega-menu",
-    "fonts",
-    "color",
-    "breadcrumb",
-    "unite-cards-height",
-    "component-featured-products",
-    "component-fixed-banner",
-    "component-fixed-products",
-    "component-products-slider",
-    "component-photos-slider",
-    "component-parallax-background",
-    "component-testimonials",
-    "component-square-photos",
-    "component-store-features",
-    "component-youtube",
-    "menu-images",
-    "filters"
-  ],
+  "features": [],
   "settings": [],
   "components": []
 }
