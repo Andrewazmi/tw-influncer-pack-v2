@@ -1267,8 +1267,8 @@
                 },
                 {
                     "id": "social_follow_desktop_offset_x",
-                    "type": "number",
-                    "format": "integer",
+                    "type": "string",
+                    "format": "number",
                     "inputType": "number",
                     "label": "إزاحة أفقية (سطح المكتب)",
                     "icon": "sicon-expand-alt",
@@ -1277,8 +1277,8 @@
                 },
                 {
                     "id": "social_follow_desktop_offset_y",
-                    "type": "number",
-                    "format": "integer",
+                    "type": "string",
+                    "format": "number",
                     "inputType": "number",
                     "label": "إزاحة عمودية (سطح المكتب)",
                     "icon": "sicon-expand-alt",
@@ -1287,8 +1287,8 @@
                 },
                 {
                     "id": "social_follow_mobile_offset_x",
-                    "type": "number",
-                    "format": "integer",
+                    "type": "string",
+                    "format": "number",
                     "inputType": "number",
                     "label": "إزاحة أفقية (الجوال)",
                     "icon": "sicon-expand-alt",
@@ -1297,8 +1297,8 @@
                 },
                 {
                     "id": "social_follow_mobile_offset_y",
-                    "type": "number",
-                    "format": "integer",
+                    "type": "string",
+                    "format": "number",
                     "inputType": "number",
                     "label": "إزاحة عمودية (الجوال)",
                     "icon": "sicon-expand-alt",
