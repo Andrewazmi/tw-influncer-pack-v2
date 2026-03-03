@@ -1,0 +1,737 @@
+/* Top Nav */
+.top-navbar {
+  @apply text-sm relative z-[51];
+  background-color: var(--site-bg-color, #f4f3e5);
+  position: relative;
+  border-bottom: 1px solid rgb(0, 0, 0);
+
+  &::after {
+    border-bottom: 1px solid rgb(0, 0, 0);
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+  }
+
+  .container {
+    @apply h-full;
+  }
+
+  .contact-email {
+    @apply flex items-center text-sm;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    i {
+      @apply opacity-60;
+    }
+  }
+
+  .top-nav-btn {
+    @apply flex items-center gap-1.5 hover:text-gray-900 transition-colors duration-200;
+  }
+
+  .top-nav-links {
+    @apply flex items-center gap-4;
+
+    a {
+      @apply hover:text-gray-900 transition-colors duration-200;
+    }
+  }
+
+  salla-menu[topnav] {
+    @apply flex items-center gap-4;
+
+    ::part(menu-item) {
+      @apply hover:text-gray-900 transition-colors duration-200;
+    }
+  }
+
+  .lang-switcher {
+    @apply flex items-center px-2;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    .flag {
+      @apply w-5 h-4 object-cover;
+    }
+
+    i {
+      @apply opacity-60;
+    }
+  }
+}
+
+/* Main Nav */
+.main-nav-container {
+  @apply fixed top-0 left-0 right-0 w-full z-50 bg-[var(--site-bg-color)];
+  transition: transform 0.3s ease;
+  position: relative;
+  border-bottom: none;
+
+  .inner {
+    @apply bg-inherit;
+    position: relative;
+
+    &::after {
+      content: none;
+    }
+
+    .container {
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+
+      /* Add border-bottom to the flex container that holds logo and actions */
+      .header-flex-container {
+        position: relative;
+
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          height: 2px;
+          background-color: rgb(0, 0, 0);
+
+          /* LTR support */
+          html[dir="ltr"] & {
+            left: 0; /* Start exactly at the logo */
+            right: 10px; /* Adjust to end at the last action icon */
+          }
+
+          /* RTL support */
+          html[dir="rtl"] & {
+            right: 0; /* Start exactly at the logo */
+            left: 10px; /* Adjust to end at the last action icon */
+          }
+        }
+      }
+    }
+  }
+
+  &.nav-hidden {
+    transform: translateY(-100%);
+  }
+
+  // Custom background Color
+  .has-bg &,
+  .has-bg & .sub-menu {
+    @apply bg-[color:var(--mainnav-bg)];
+  }
+
+  // Custom text color
+  .has-text-color & {
+    @apply text-[color:var(--mainnav-text-color)];
+  }
+
+  .navbar-brand {
+    @apply flex items-center;
+
+    img {
+      @apply w-auto h-10 max-w-[140px];
+
+      @screen lg {
+        @apply h-12 max-w-[180px];
+      }
+    }
+  }
+
+  .header-search {
+    @apply min-w-[280px] mx-4;
+
+    ::part(input) {
+      @apply bg-gray-50 hover:bg-gray-100 border border-gray-200 hover:border-gray-300 rounded-full px-4 py-2 transition-all duration-200;
+      height: 36px;
+    }
+
+    ::part(button) {
+      @apply text-gray-500 hover:text-primary transition-colors duration-200;
+    }
+
+    ::part(results) {
+      @apply mt-2 bg-white rounded-lg shadow-lg border border-gray-100;
+    }
+  }
+
+  .header-btn__icon {
+    @apply text-xl w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-700 hover:border-gray-300 transition-colors duration-200;
+  }
+}
+
+/* Logo */
+.header-logo {
+  @apply flex items-center;
+
+  .navbar-brand {
+    @apply block;
+
+    img {
+      @apply w-[120px] h-[40px] object-contain;
+    }
+  }
+}
+
+/* Main Navigation */
+.main-navigation {
+  @apply flex-1 mx-8;
+
+  custom-main-menu {
+    @apply flex justify-center;
+
+    ::part(menu-item) {
+      @apply px-4 py-2 text-sm font-medium transition-colors duration-200 hover:text-primary;
+    }
+  }
+}
+
+/* Header Actions */
+.header-actions {
+  @apply flex items-center gap-4;
+
+  .header-action-btn {
+    @apply relative flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300;
+
+    i {
+      @apply text-xl transition-colors duration-200;
+    }
+
+    &:hover {
+      @apply bg-gray-100;
+
+      i {
+        @apply text-primary;
+      }
+    }
+  }
+}
+
+/* Cart Summary */
+salla-cart-summary {
+  @apply relative flex items-center justify-center;
+
+  .cart-icon-wrapper {
+    @apply relative flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-100 transition-all duration-300;
+
+    i {
+      @apply text-xl transition-colors duration-200;
+    }
+  }
+
+  .s-cart-summary-count {
+    @apply absolute flex items-center justify-center w-5 h-5 text-xs font-medium text-black bg-white rounded-full shadow-sm;
+    top: -4px;
+    right: -4px;
+  }
+
+  &:hover {
+    .cart-icon-wrapper i {
+      @apply text-primary;
+    }
+  }
+
+  // Hide default Salla components
+  ::part(count),
+  ::part(total),
+  .s-cart-summary-total {
+    @apply hidden;
+  }
+}
+
+/* User Menu */
+salla-user-menu {
+  @apply relative flex items-center justify-center;
+
+  ::part(button) {
+    @apply w-10 h-10 rounded-full flex items-center justify-center hover:bg-gray-100 transition-all duration-300;
+  }
+
+  ::part(icon) {
+    @apply text-xl transition-colors duration-200;
+  }
+
+  &:hover {
+    ::part(icon) {
+      @apply text-primary;
+    }
+  }
+
+  ::part(menu) {
+    @apply mt-2 bg-white rounded-lg shadow-lg border border-gray-100;
+  }
+
+  ::part(menu-item) {
+    @apply px-4 py-2 text-sm hover:bg-gray-50 transition-colors duration-200;
+  }
+}
+
+/* Search Component Styling */
+salla-search {
+  &[mode="overlay"] {
+    ::part(overlay) {
+      @apply fixed inset-0 z-[100] flex items-center justify-center p-4;
+      background-color: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(4px);
+    }
+
+    ::part(search-container) {
+      @apply bg-white rounded-lg w-full max-w-[600px] overflow-hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    ::part(input) {
+      @apply w-full text-lg px-4 py-3 border-0 focus:ring-0 focus:outline-none;
+      background-color: transparent;
+    }
+
+    ::part(button) {
+      @apply text-xl text-gray-500 hover:text-primary transition-colors duration-200;
+    }
+
+    ::part(results) {
+      @apply mt-4 max-h-[60vh] overflow-y-auto;
+    }
+
+    ::part(result-item) {
+      @apply px-4 py-2 hover:bg-gray-50 transition-colors duration-200;
+    }
+
+    ::part(close-button) {
+      @apply absolute top-4 right-4 text-gray-500 hover:text-gray-700 transition-colors duration-200;
+    }
+  }
+}
+
+/* Mobile Menu Trigger */
+.mobile-menu-trigger {
+  @apply flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300;
+
+  i {
+    @apply text-xl;
+  }
+
+  &:hover {
+    @apply bg-gray-100;
+
+    i {
+      @apply text-primary;
+    }
+  }
+}
+
+/* RTL Support */
+html[dir="rtl"] {
+  salla-cart-summary {
+    .s-cart-summary-count {
+      left: -4px;
+      right: auto;
+    }
+  }
+
+  .search-close {
+    @apply left-8 right-auto;
+  }
+}
+
+/* LTR Support */
+html[dir="ltr"] {
+  salla-cart-summary {
+    .s-cart-summary-count {
+      right: -4px;
+      left: auto;
+    }
+  }
+
+  .search-close {
+    @apply right-8 left-auto;
+  }
+}
+
+/* Animations */
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .main-navigation {
+    @apply hidden;
+  }
+}
+
+/* Mobile Menu */
+.mburger {
+  @apply text-gray-600 hover:text-gray-900 transition-colors duration-200;
+}
+
+/* RTL Specific Styles */
+html[dir="rtl"] {
+  .header-search {
+    .s-search-input {
+      @apply pl-12 pr-4;
+    }
+  }
+
+  salla-cart-summary {
+    .s-cart-summary-count {
+      @apply -left-1.5 right-auto;
+    }
+
+    ::part(total) {
+      @apply mr-2 ml-0;
+    }
+  }
+}
+
+/* LTR Specific Styles */
+html[dir="ltr"] {
+  .header-search {
+    .s-search-input {
+      @apply pr-12 pl-4;
+    }
+  }
+
+  salla-cart-summary {
+    .s-cart-summary-count {
+      @apply -right-1.5 left-auto;
+    }
+
+    ::part(total) {
+      @apply ml-2 mr-0;
+    }
+  }
+}
+
+// contacs menu items - pages menu items
+.topnav-link-item{
+  @apply inline-block transition duration-300 px-4 rtl:last:pl-0 ltr:last:pr-0 py-px text-sm leading-none ltr:border-r rtl:border-l border-gray-200 ltr:last:border-0 rtl:last:border-0 hover:opacity-80;
+
+  &.right-side{
+    @apply rtl:first:pr-0 ltr:first:pl-0
+  }
+}
+
+/* Sticky Header */
+.main-nav-container {
+  &.animated {
+    .inner {
+      transition: top 0.5s, transform 0.5s, -webkit-transform 0.5s, opacity 0.4s;
+    }
+  }
+
+  &.fixed-pinned {
+    .inner {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      width: 100%;
+      z-index: 29;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      transform: translate3d(0, -100%, 0);
+
+      @media (max-width: 1024px){
+        transform: none;
+        top: -70px;
+      }
+    }
+
+    .navbar-brand {
+      img {
+        max-height: 40px;
+      }
+
+      h4 {
+        line-height: 1;
+      }
+    }
+
+    .main-menu > li > a {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+  }
+
+  &.fixed-header {
+    .inner {
+      transform: translate3d(0, 0, 0);
+
+      @media (max-width: 1024px){
+        transform: none;
+        top: 0;
+      }
+    }
+  }
+}
+
+.navbar-brand {
+  @apply items-center flex my-2 lg:my-0;
+
+  img {
+    @apply w-auto max-h-12 max-w-[100px] xs:max-w-[170px];
+  }
+}
+
+// Mainnav cart icon
+.header-btn{
+  @apply border-none outline-none transition-opacity hover:opacity-80;
+
+  &__icon{
+    @apply text-xl w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-700;
+    &.icon{
+      @apply mr-[9px] rtl:ml-[9px] rtl:mr-[unset];
+    }
+  }
+}
+
+#nav-cart{
+  @apply flex items-center rtl:mr-4 ltr:ml-4 relative whitespace-nowrap;
+
+  .icon{
+    @apply rtl:ml-2 ltr:mr-2;
+  }
+
+  span{
+    @apply absolute top-1 rtl:-right-2 ltr:-left-2;
+  }
+}
+
+// Search
+.header-search{
+  .s-search-results{
+    @apply z-10;
+  }
+}
+
+/* Search Overlay */
+.search-overlay {
+  @apply fixed inset-0 z-[100] bg-black bg-opacity-50 backdrop-blur-sm flex items-start justify-center pt-20 pb-20 px-4;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  overflow-y: auto;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .search-overlay-content {
+    @apply bg-white rounded-lg w-full max-w-[600px] p-6 relative;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  .search-close-btn {
+    @apply absolute top-4 right-4 text-gray-500 hover:text-gray-900 transition-colors duration-200;
+    font-size: 1.25rem;
+  }
+
+  .search-container {
+    @apply mt-4;
+  }
+
+  salla-search {
+    @apply w-full;
+
+    &[inline="true"] {
+      ::part(input) {
+        @apply w-full text-lg px-4 py-3 border border-gray-200 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary;
+        height: 50px;
+      }
+
+      ::part(button) {
+        @apply text-xl text-gray-500 hover:text-primary transition-colors duration-200;
+      }
+
+      ::part(results) {
+        @apply mt-4 max-h-[50vh] overflow-y-auto bg-white rounded-lg shadow-lg border border-gray-100;
+        position: relative;
+        z-index: 10;
+      }
+
+      ::part(result-item) {
+        @apply p-3 hover:bg-gray-50 transition-colors duration-200 flex items-center gap-3;
+      }
+
+      ::part(result-image) {
+        @apply w-16 h-16 object-cover rounded-md;
+      }
+
+      ::part(result-title) {
+        @apply font-medium text-gray-900;
+      }
+
+      ::part(result-price) {
+        @apply text-primary font-medium;
+      }
+    }
+  }
+}
+
+/* Transparent Header with Hero Section */
+.store-header.with-hero-section {
+  position: absolute !important;
+  width: 100%;
+  z-index: 40;
+  background: transparent !important;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.store-header.with-hero-section .top-navbar {
+  background-color: transparent !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.25rem 0; /* Further reduced padding for transparent header */
+}
+
+.store-header.with-hero-section .top-navbar::after {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.store-header.with-hero-section .main-nav-container {
+  background-color: transparent !important;
+  position: relative !important;
+  box-shadow: none !important;
+  border: none !important;
+  transform: none !important;
+}
+
+.store-header.with-hero-section .main-nav-container .inner {
+  background-color: transparent !important;
+  position: relative !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.store-header.with-hero-section .main-nav-container .inner .container {
+  background-color: transparent !important;
+}
+
+.store-header.with-hero-section .main-nav-container .inner .container::after {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.store-header.with-hero-section .header-flex-container::after {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Text color for transparent header */
+/* Top navbar follows color-primary */
+.store-header.with-hero-section .top-navbar,
+.store-header.with-hero-section .top-navbar .contact-email,
+.store-header.with-hero-section .top-navbar .lang-switcher,
+.store-header.with-hero-section .top-navbar .top-nav-links a,
+.store-header.with-hero-section .top-navbar salla-menu[topnav]::part(menu-item) {
+  color: var(--color-primary, #f4f3e5) !important;
+}
+
+/* Main header text is white */
+.store-header.with-hero-section .main-nav-container,
+.store-header.with-hero-section .header-action-btn i,
+.store-header.with-hero-section custom-main-menu::part(menu-item),
+.store-header.with-hero-section .mobile-menu-trigger i {
+  color: white !important;
+}
+
+/* Cart count background */
+.store-header.with-hero-section .s-cart-summary-count {
+  background-color: white;
+  color: rgb(255, 255, 255);
+}
+
+/* Logo adjustment for better visibility */
+.store-header.with-hero-section .navbar-brand img {
+  filter: brightness(0) invert(1);
+}
+
+/* Adjust hero section to accommodate header */
+.s-block--hero-media {
+  margin-top: -40px; /* Reduced to push video up and cover the top navbar */
+  padding-top: 0;
+  position: relative;
+  z-index: 1;
+
+  /* Paper cut effect at the bottom */
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70px; /* Height of the torn paper effect */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 70' preserveAspectRatio='none'%3E%3Cpath fill='%23f8f8f8' d='M0,0 C120,20 240,40 480,40 C720,40 960,20 1200,20 C1320,20 1380,30 1440,40 L1440,70 L0,70 Z' style='stroke: none;'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    z-index: 5;
+  }
+}
+
+/* Make sure the hero media takes full viewport height */
+.s-block--hero-media video,
+.s-block--hero-media img {
+  height: 100vh;
+  max-height: 100vh !important;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Adjust the content positioning */
+.s-block--hero-media .absolute {
+  top: 50%;
+  transform: translateY(-50%);
+  bottom: auto;
+  z-index: 6; /* Ensure content is above the paper cut effect */
+}
+
+/* Add decorative pattern overlay similar to the screenshot */
+.pattern-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' fill='none'%3E%3Cpath d='M0,0 L100,0 L100,100 L0,100 Z' fill='none' stroke='rgba(255, 165, 0, 0.3)' stroke-width='1'/%3E%3Cpath d='M20,0 L20,100 M40,0 L40,100 M60,0 L60,100 M80,0 L80,100 M0,20 L100,20 M0,40 L100,40 M0,60 L100,60 M0,80 L100,80' stroke='rgba(255, 165, 0, 0.3)' stroke-width='0.5'/%3E%3C/svg%3E");
+  background-size: 30px 30px;
+}
+
+.s-block--hero-media::before {
+  content: none; /* Remove the previous ::before pattern */
+}
+
+/* Custom paper tear effect for the bottom of hero section */
+.paper-tear-effect {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; /* Slight overlap to avoid gaps */
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background-color: var(--site-bg-color);
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 100' preserveAspectRatio='none'%3E%3Cpath d='M0,0 C50,20 100,50 150,30 C200,10 250,40 300,50 C350,60 400,30 450,40 C500,50 550,20 600,30 C650,40 700,60 750,50 C800,40 850,20 900,30 C950,40 975,50 1000,60 L1000,100 L0,100 Z' fill='%23FFFFFF'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 100' preserveAspectRatio='none'%3E%3Cpath d='M0,0 C50,20 100,50 150,30 C200,10 250,40 300,50 C350,60 400,30 450,40 C500,50 550,20 600,30 C650,40 700,60 750,50 C800,40 850,20 900,30 C950,40 975,50 1000,60 L1000,100 L0,100 Z' fill='%23FFFFFF'/%3E%3C/svg%3E");
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    z-index: 5;
+  }
+}
+

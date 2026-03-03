@@ -1,0 +1,109 @@
+{#
+| Variable         | Type    | Description                     |
+|------------------|---------|---------------------------------|
+| cart             | object  |                                 |
+| cart.items_count | int     |                                 |
+| cart.total       | string  | Formatted total ex: "١٠٠ ر.س"   |
+#}
+{% set important_links = theme.settings.get('important_links') %}
+{% set contact_email = theme.settings.get('albred_alilktrone_lltoasl') %}
+<header class="store-header">
+  {# Top Nav #}
+  <div class="top-navbar">
+    <div class="container">
+      <div class="flex items-center justify-between h-12">
+        {# Right Side - Language Switcher #}
+        <div class="flex items-center">
+          {% if store.settings.is_multilingual or store.settings.currencies_enabled %}
+            <button type="button" onclick="salla.event.dispatch('localization::open')" class="lang-switcher">
+              <span class="flag iti__flag iti__sa rounded-sm"></span>
+              <span class="mx-2">العربية</span>
+              <i class="sicon-keyboard_arrow_down text-sm"></i>
+            </button>
+            <salla-localization-modal></salla-localization-modal>
+          {% endif %}
+        </div>
+
+        {# Left Side - Email #}
+        {% if contact_email %}
+          <div class="flex items-center">
+            <a href="mailto:{{ contact_email }}" class="contact-email">
+              <i class="sicon-mail text-sm opacity-60 rtl:ml-2 ltr:mr-2"></i>
+              <span>{{ contact_email }}</span>
+            </a>
+          </div>
+        {% else %}
+          <div></div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  {# Main Nav #}
+  <div id="mainnav" class="main-nav-container">
+    <div class="inner">
+      <div class="container">
+        <div class="flex items-center justify-between h-20 header-flex-container">
+          {# Logo Section #}
+          <div class="header-logo">
+            <a class="navbar-brand" href="{{ store.url }}">
+              <img fetchpriority="high" width="120" height="40" loading="eager" src="{{ store.logo }}" alt="{{ store.name }} logo">
+              {% if is_page('index') %}
+                <h1 class="sr-only">{{ store.name }}</h1>
+              {% else %}
+                <h2 class="sr-only">{{ store.name }}</h2>
+              {% endif %}
+            </a>
+          </div>
+
+          {# Navigation Section #}
+          <nav class="main-navigation hidden lg:block">
+            <custom-main-menu></custom-main-menu>
+          </nav>
+
+          {# Actions Section #}
+          <div class="header-actions">
+            <button type="button" class="header-action-btn search-trigger" aria-label="{{ trans('blocks.header.search') }}">
+              <i class="sicon-search"></i>
+            </button>
+
+            <div class="search-overlay" id="searchOverlay">
+              <div class="search-overlay-content">
+                <button type="button" class="search-close-btn" aria-label="{{ trans('blocks.header.close') }}">
+                  <i class="sicon-cancel"></i>
+                </button>
+                <div class="search-container">
+                  <salla-search id="searchComponent" inline="true" height="50" autofocus="true" placeholder="{{ trans('blocks.header.search_placeholder') }}"></salla-search>
+                </div>
+              </div>
+            </div>
+
+            {# Account Menu #}
+            <salla-user-menu class="header-action-btn">
+              <i slot="icon" class="sicon-user-circle"></i>
+            </salla-user-menu>
+
+            {# Cart Summary #}
+            <salla-cart-summary class="header-action-btn" hide-total hide-count>
+              <div slot="icon" class="cart-icon-wrapper">
+                <i class="sicon-shopping-bag"></i>
+                {% if cart.items_count > 0 %}
+                  <span class="s-cart-summary-count">{{ cart.items_count }}</span>
+                {% endif %}
+              </div>
+            </salla-cart-summary>
+          </div>
+
+          {# Mobile Menu Trigger #}
+          <button type="button" class="mobile-menu-trigger lg:hidden" aria-label="{{ trans('blocks.header.menu') }}">
+            <i class="sicon-menu"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+{% if store.scope %}
+  <salla-scopes selection="{{ store.scope.display_as == 'popup' ? 'mandatory' : 'optional' }}"></salla-scopes>
+{% endif %}

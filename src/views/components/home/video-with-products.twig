@@ -1,0 +1,175 @@
+{#
+| Variable                | Type    | Description                                  |
+|-------------------------|---------|----------------------------------------------|
+| component              | object  | Component settings from twilight.json         |
+#}
+
+{% set isRtl = app.isRtl() %}
+{% set shouldReverse = component.reverse_layout|default(false) %}
+
+{# Extract the category ID if it's an object or array #}
+{% set categoryId = null %}
+{% if component.category is defined and component.category is not empty %}
+    {% if component.category.id is defined %}
+        {% set categoryId = component.category.id %}
+    {% elseif component.category[0] is defined and component.category[0].id is defined %}
+        {% set categoryId = component.category[0].id %}
+    {% else %}
+        {% set categoryId = component.category %}
+    {% endif %}
+{% endif %}
+
+{# Determine which side each section should be on (corrected logic for RTL) #}
+{% if isRtl %}
+    {% if shouldReverse %}
+        {% set videoPosition = 'left' %}
+        {% set productsPosition = 'right' %}
+    {% else %}
+        {% set videoPosition = 'right' %}
+        {% set productsPosition = 'left' %}
+    {% endif %}
+{% else %}
+    {% if shouldReverse %}
+        {% set videoPosition = 'left' %}
+        {% set productsPosition = 'right' %}
+    {% else %}
+        {% set videoPosition = 'right' %}
+        {% set productsPosition = 'left' %}
+    {% endif %}
+{% endif %}
+
+{# Debug output for layout decisions #}
+<script>
+console.log('DEBUG: Component Layout Settings:');
+console.log('Is RTL: {{ isRtl ? "true" : "false" }}');
+console.log('Should Reverse: {{ shouldReverse ? "true" : "false" }}');
+console.log('Video Position: {{ videoPosition }}');
+console.log('Products Position: {{ productsPosition }}');
+console.log('Category ID: {{ categoryId }}');
+</script>
+
+<section class="s-block s-block--video-products relative py-16 overflow-hidden {% if isRtl %}rtl{% else %}ltr{% endif %} {% if shouldReverse %}reversed{% endif %}" style="background-color: {{ component.background_color|default('#f4f3e5') }}">
+  <div class="container">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      {# Use the position variables to determine order and classes #}
+      <div class="w-full relative video-section position-{{ videoPosition }}" {% if videoPosition == 'right' %}style="order: 2;"{% else %}style="order: 1;"{% endif %}>
+        <div class="video-card">
+          <div class="video-container relative">
+            {% if component.video_url %}
+              <video
+                class="w-full h-full object-cover"
+                poster="{{ component.video_image }}"
+                autoplay
+                muted
+                loop
+                playsinline>
+                <source src="{{ component.video_url }}" type="video/mp4">
+                {{ trans('common.messages.video_not_supported')|default('Your browser does not support the video tag.') }}
+              </video>
+            {% elseif component.video_image %}
+              <img
+                src="{{ component.video_image }}"
+                alt="{{ component.video_title|default('Video thumbnail') }}"
+                class="w-full h-full object-cover">
+            {% endif %}
+
+            {# Overlay with text and CTA on video/image #}
+            <div class="absolute inset-0 flex flex-col items-center justify-end p-8">
+              {% if component.video_title %}
+                <h3 class="text-2xl font-bold mb-3 text-white">{{ component.video_title }}</h3>
+              {% endif %}
+
+              {% if component.button_text and component.button_url %}
+                <a href="{{ component.button_url }}" class="inline-block px-6 py-2 bg-primary text-white rounded-md hover:bg-primary-dark transition duration-300">
+                  {{ component.button_text }}
+                </a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {# Products Section #}
+      <div class="w-full products-section position-{{ productsPosition }}" {% if productsPosition == 'right' %}style="order: 2;"{% else %}style="order: 1;"{% endif %}>
+        <div class="products-header mb-6">
+          {% if component.products_title %}
+            <h2 class="text-3xl font-bold mb-3">{{ component.products_title }}</h2>
+          {% endif %}
+
+          {% if component.products_description %}
+            <p class="text-gray-600">{{ component.products_description }}</p>
+          {% endif %}
+        </div>
+
+        {# Product container - using Salla's built-in component #}
+        <div class="product-list-container">
+          {% if categoryId %}
+            <salla-products-list
+              source="categories"
+              source-value="{{ categoryId }}"
+              limit="{{ component.products_count|default(4) }}"
+              class="video-products-list"
+              shadow-on-hover
+              id="video-products-{{ categoryId }}">
+            </salla-products-list>
+          {% else %}
+            <salla-products-list
+              source="latest"
+              limit="{{ component.products_count|default(4) }}"
+              class="video-products-list"
+              shadow-on-hover
+              id="video-products-latest">
+            </salla-products-list>
+          {% endif %}
+        </div>
+
+        {% if component.show_more_button %}
+          <div class="text-center mt-6">
+            <a href="{{ categoryId ? url('store.products.index', {category: categoryId}) : url('store.products.index') }}" class="inline-block px-6 py-2 border border-primary text-primary rounded-md hover:bg-primary hover:text-white transition duration-300">
+              {{ component.more_button_text|default('اكتشف المزيد') }}
+            </a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  {# Decorative Elements - adjust based on RTL and layout settings #}
+  <div class="absolute -bottom-10 {{ videoPosition == 'right' ? 'left-0' : 'right-0' }} w-32 h-32 opacity-10 pattern-overlay"></div>
+  <div class="absolute -top-10 {{ videoPosition == 'right' ? 'right-0' : 'left-0' }} w-24 h-24 opacity-10 pattern-overlay"></div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    console.log('Video-with-products component initialized');
+
+    // Make sure video is properly sized
+    const videoContainers = document.querySelectorAll('.s-block--video-products .video-container');
+    videoContainers.forEach(container => {
+      // Force aspect ratio for vertical video
+      container.style.aspectRatio = '16/9';
+    });
+
+    // Initialize Salla products list components
+    const productLists = document.querySelectorAll('.s-block--video-products salla-products-list');
+    if (productLists.length) {
+      console.log(`Found ${productLists.length} product lists to initialize`);
+
+      productLists.forEach(list => {
+        // Ensure the component is visible
+        list.style.display = 'block';
+        list.style.visibility = 'visible';
+        list.style.opacity = '1';
+
+        // Add event listeners for debugging
+        list.addEventListener('load', () => {
+          console.log('Products loaded successfully:', list.id);
+        });
+
+        list.addEventListener('error', (e) => {
+          console.error('Error loading products:', e, list.id);
+        });
+      });
+    }
+  });
+</script>

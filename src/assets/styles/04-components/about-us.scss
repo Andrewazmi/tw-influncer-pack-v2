@@ -1,0 +1,59 @@
+/* About Us Section */
+.about-us-section {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+
+  @media (max-width: 768px) {
+    padding: 3rem 0;
+  }
+}
+
+.about-us-image-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+}
+
+.pattern-overlay {
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.7;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* RTL specific styles */
+html[dir="rtl"] {
+  .about-us-section {
+    .text-left {
+      text-align: right;
+    }
+
+    .pattern-overlay {
+      right: auto;
+      left: -10%;
+    }
+  }
+}
+
+/* LTR specific styles */
+html[dir="ltr"] {
+  .about-us-section {
+    .text-right {
+      text-align: left;
+    }
+  }
+}

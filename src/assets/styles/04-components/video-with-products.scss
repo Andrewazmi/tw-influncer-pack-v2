@@ -1,0 +1,443 @@
+/*
+ * Video with Products Component
+ */
+
+.s-block--video-products {
+  position: relative;
+  overflow: hidden;
+  background-color: #f4f3e5;
+
+  // Video card styling
+  .video-card {
+    position: relative;
+    height: 100%;
+    min-height: 500px;
+    overflow: hidden;
+  }
+
+  // Video container styling
+  .video-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    aspect-ratio: 16/9;
+    border-radius: 0.5rem;
+
+    video, img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    // Overlay styling
+    .absolute {
+      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.1) 100%);
+      text-align: center;
+      padding-bottom: 2rem;
+
+      h3 {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        font-weight: bold;
+
+        @media (min-width: 768px) {
+          font-size: 2rem;
+        }
+      }
+
+      a {
+        font-weight: bold;
+        padding: 0.75rem 1.5rem;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+        background-color: var(--primary-color, #2B4B7C);
+        color: white;
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+          background-color: var(--primary-color-dark, #1a3a6c);
+        }
+      }
+    }
+
+    // Enforce position in RTL mode
+    [dir="rtl"] & {
+      right: auto !important;
+      left: 0 !important;
+    }
+  }
+
+  // Position-based layout (new approach)
+  @media (min-width: 1024px) {
+    // Override Tailwind grid to enforce positioning
+    .grid-cols-2 > * {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    // Video on left side
+    .video-section.position-left {
+      order: 1 !important;
+    }
+
+    // Video on right side
+    .video-section.position-right {
+      order: 2 !important;
+    }
+
+    // Products on left side
+    .products-section.position-left {
+      order: 1 !important;
+    }
+
+    // Products on right side
+    .products-section.position-right {
+      order: 2 !important;
+    }
+  }
+
+  // Products section styling
+  .products-header {
+    h2 {
+      font-size: 1.75rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: #333;
+
+      @media (min-width: 768px) {
+        font-size: 2rem;
+      }
+    }
+
+    p {
+      color: #666;
+      max-width: 90%;
+      margin-bottom: 1.5rem;
+    }
+
+    // RTL text alignment fix
+    [dir="rtl"] & {
+      text-align: right;
+    }
+  }
+
+  // Product list container styling (for Salla components)
+  .product-list-container {
+    position: relative;
+    min-height: 200px;
+
+    // Style the Salla products list component
+    salla-products-list {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+
+      // Style the product cards within the list
+      &::part(product-card) {
+        transition: all 0.3s ease;
+        border-radius: 0.5rem;
+        overflow: hidden;
+
+        &:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+      }
+
+      // Style the product image
+      &::part(product-image) {
+        aspect-ratio: 1/1;
+        object-fit: cover;
+      }
+
+      // Style the product title
+      &::part(product-title) {
+        font-weight: bold;
+        margin-top: 0.5rem;
+        font-size: 1rem;
+      }
+
+      // Style the product price
+      &::part(product-price) {
+        color: var(--primary-color, #2B4B7C);
+        font-weight: bold;
+      }
+
+      // Style the add to cart button
+      &::part(add-to-cart-button) {
+        background-color: var(--primary-color, #2B4B7C);
+        color: white;
+        border-radius: 0.25rem;
+        padding: 0.5rem 1rem;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background-color: var(--primary-color-dark, #1a3a6c);
+        }
+      }
+    }
+
+    // RTL support for product list
+    [dir="rtl"] & {
+      salla-products-list {
+        direction: rtl;
+      }
+    }
+  }
+
+  // More button styling
+  .text-center {
+    margin-top: 1.5rem;
+
+    a {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border: 1px solid var(--primary-color, #2B4B7C);
+      color: var(--primary-color, #2B4B7C);
+      border-radius: 0.375rem;
+      transition: all 0.3s ease;
+      font-weight: bold;
+
+      &:hover {
+        background-color: var(--primary-color, #2B4B7C);
+        color: white;
+        transform: translateY(-2px);
+      }
+    }
+  }
+
+  // Decorative elements
+  .pattern-overlay {
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+    background-size: cover;
+    border-radius: 50%;
+  }
+
+  // Product card container styling
+  .product-card-container {
+    position: relative;
+    min-height: 200px;
+
+    // Grids need direction: rtl in RTL mode
+    [dir="rtl"] {
+      direction: rtl !important;
+    }
+
+    // Loading indicator
+    .loading-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 200px;
+
+      .spinner {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        border: 4px solid rgba(0,0,0,0.1);
+        border-radius: 50%;
+        border-top-color: var(--primary-color, #2B4B7C);
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    }
+
+    // Error message
+    .error {
+      padding: 1rem;
+      background-color: #fee2e2;
+      border-radius: 0.375rem;
+      color: #ef4444;
+      text-align: center;
+    }
+
+    // No products message
+    .no-products {
+      padding: 1rem;
+      background-color: #f3f4f6;
+      border-radius: 0.375rem;
+      color: #4b5563;
+      text-align: center;
+    }
+
+    // Product card styling - both full image and minimal
+    custom-salla-product-card {
+      display: block;
+      transition: all 0.3s ease;
+
+      &[shadow-on-hover]:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      }
+
+      &[fullImage] {
+        height: 100%;
+
+        &::part(product-card) {
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+        }
+
+        &::part(product-image) {
+          flex: 1;
+          min-height: 300px;
+          aspect-ratio: 1/1;
+          object-fit: cover;
+        }
+      }
+
+      &[minimal] {
+        &::part(product-card) {
+          display: flex;
+          align-items: center;
+          height: 100%;
+        }
+
+        &::part(product-image) {
+          width: 120px;
+          height: 120px;
+          min-width: 120px;
+          object-fit: cover;
+        }
+
+        &::part(product-title) {
+          font-size: 0.875rem;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+        }
+
+        &::part(product-price) {
+          font-size: 1rem;
+          font-weight: bold;
+        }
+      }
+    }
+
+    // Force RTL for product cards
+    [dir="rtl"] & {
+      .flex-1.grid, .grid.gap-4 {
+        direction: rtl !important;
+      }
+
+      custom-salla-product-card[minimal] {
+        flex-direction: row !important;
+        padding-right: 0 !important;
+        padding-left: 1rem !important;
+      }
+    }
+  }
+
+  // Responsive styles
+  @media (max-width: 1023px) {
+    .products-header {
+      text-align: center;
+
+      p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    .video-card {
+      min-height: 400px;
+      margin-top: 2rem;
+    }
+
+    custom-salla-product-card[minimal] {
+      &::part(product-image) {
+        width: 100px;
+        height: 100px;
+        min-width: 100px;
+      }
+    }
+  }
+
+  // Media query to manage section ordering based on layout settings
+  @media (min-width: 1024px) {
+    .video-section {
+      &.position-left {
+        order: 1 !important;
+      }
+
+      &.position-right {
+        order: 2 !important;
+      }
+    }
+
+    .products-section {
+      &.position-left {
+        order: 1 !important;
+      }
+
+      &.position-right {
+        order: 2 !important;
+      }
+    }
+  }
+
+  // Make sure all grids have the right direction when RTL
+  [dir="rtl"] & {
+    .grid {
+      direction: rtl !important;
+    }
+  }
+}
+
+// RTL-specific styles
+html[dir="rtl"] {
+  .s-block--video-products {
+    // Text alignment for RTL
+    .products-header {
+      text-align: right;
+    }
+
+    // Ensure grid items flow correctly in RTL
+    .grid {
+      direction: rtl !important;
+    }
+
+    // Ensure product list displays correctly in RTL
+    .product-list-container {
+      salla-products-list {
+        direction: rtl !important;
+      }
+    }
+
+    // Ensure correct ordering in RTL mode
+    @media (min-width: 1024px) {
+      .video-section {
+        &.position-left {
+          order: 1 !important;
+        }
+
+        &.position-right {
+          order: 2 !important;
+        }
+      }
+
+      .products-section {
+        &.position-left {
+          order: 1 !important;
+        }
+
+        &.position-right {
+          order: 2 !important;
+        }
+      }
+    }
+  }
+}

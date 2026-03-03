@@ -1,0 +1,362 @@
+{#
+| Variable                           | Type       | Description
+|------------------------------------|------------|---------------------------------------------
+| component                          | object     | Component settings from twilight.json
+| component.reels                    | object[]   | Reels collection
+| component.promo_blocks             | object[]   | Promo blocks collection
+| component.picked_products          | Product[]  | Selected products
+| position                           | int        | Component order on home page
+#}
+{% set block_id = 'influencer-pack-' ~ position %}
+{% set reels = component.reels|default([]) %}
+{% set promo_blocks = component.promo_blocks|default([]) %}
+{% set picked_products = component.picked_products|default([]) %}
+{% set show_reels = component.show_reels|default(true) and reels|length %}
+{% set show_promo_blocks = component.show_promo_blocks|default(true) and promo_blocks|length %}
+{% set show_picked_products = component.show_picked_products|default(true) and picked_products|length %}
+{% set autoplay_enabled = component.reels_autoplay|default(true) %}
+{% set muted_enabled = component.reels_muted is same as(false) ? false : true %}
+{% set section_title = component.title|default('') %}
+{% set section_subtitle = component.subtitle|default('') %}
+{% set copy_button_text = component.copy_code_button_text|default('نسخ الكود') %}
+{% if copy_button_text is iterable %}
+  {% set copy_button_text = copy_button_text.ar|default(copy_button_text.en|default(copy_button_text|first|default('نسخ الكود'))) %}
+{% endif %}
+{% if not copy_button_text or copy_button_text == 'Copy code' %}
+  {% set copy_button_text = 'نسخ الكود' %}
+{% endif %}
+{% set copy_button_color = component.copy_code_button_color|default('#111111') %}
+{% set promo_aria_label = trans('pages.offers.title') %}
+{% if promo_aria_label == 'pages.offers.title' %}
+  {% set promo_aria_label = 'عروض الخصم' %}
+{% endif %}
+
+<section
+  id="{{ block_id }}"
+  class="s-block s-block--influencer-pack"
+  data-autoplay="{{ autoplay_enabled ? 'true' : 'false' }}"
+  data-muted="{{ muted_enabled ? 'true' : 'false' }}"
+  data-copy-button-color="{{ copy_button_color }}">
+  <div class="container">
+    {% if section_title or section_subtitle %}
+      <header class="influencer-pack__header">
+        {% if section_title %}
+          <h2 class="influencer-pack__title">{{ section_title }}</h2>
+        {% endif %}
+        {% if section_subtitle %}
+          <p class="influencer-pack__subtitle">{{ section_subtitle }}</p>
+        {% endif %}
+      </header>
+    {% endif %}
+
+    {% if show_reels %}
+      <section class="influencer-pack__reels" aria-label="{{ section_title ? section_title : 'Influencer reels' }}">
+        <div class="influencer-pack__reels-shell">
+          <button
+            type="button"
+            class="influencer-pack__nav influencer-pack__nav--prev"
+            aria-label="{{ trans('common.actions.previous')|default('Previous reel') }}">
+            <span class="influencer-pack__nav-arrow" aria-hidden="true">‹</span>
+          </button>
+          <button
+            type="button"
+            class="influencer-pack__nav influencer-pack__nav--next"
+            aria-label="{{ trans('common.actions.next')|default('Next reel') }}">
+            <span class="influencer-pack__nav-arrow" aria-hidden="true">›</span>
+          </button>
+
+          <div class="influencer-pack__reels-track" tabindex="0" aria-label="{{ trans('common.messages.scroll')|default('Scrollable reels') }}">
+            {% for reel in reels %}
+            {% set video_mode = reel.video_mode|default('external') %}
+            {% if video_mode is iterable %}
+              {% set video_mode = video_mode|first|default('external') %}
+            {% endif %}
+            {% set reel_cta_mode = reel.cta_mode|default('auto') %}
+            {% if reel_cta_mode is iterable %}
+              {% set reel_cta_mode_item = reel_cta_mode|first %}
+              {% if reel_cta_mode_item is iterable %}
+                {% set reel_cta_mode = reel_cta_mode_item.value|default('auto') %}
+              {% else %}
+                {% set reel_cta_mode = reel_cta_mode_item|default('auto') %}
+              {% endif %}
+            {% endif %}
+            {% if reel_cta_mode not in ['auto', 'products', 'link'] %}
+              {% set reel_cta_mode = 'auto' %}
+            {% endif %}
+            {% set reel_cta_url = reel.cta_url|default('') %}
+            {% if reel_cta_url is iterable %}
+              {% set reel_cta_item = reel_cta_url|first %}
+              {% if reel_cta_item is iterable %}
+                {% set reel_cta_url = reel_cta_item.value|default('') %}
+              {% else %}
+                {% set reel_cta_url = reel_cta_item|default('') %}
+              {% endif %}
+            {% endif %}
+            {% set reel_cta_text = reel.cta_text|default('') %}
+            {% if reel_cta_text is iterable %}
+              {% set reel_cta_text = reel_cta_text.ar|default(reel_cta_text.en|default(reel_cta_text|first|default(''))) %}
+            {% endif %}
+            {% if not reel_cta_text %}
+              {% set reel_cta_text = 'اطلب الآن' %}
+            {% endif %}
+            {% set reel_products = reel.products|default([]) %}
+            {% if reel_products is not iterable %}
+              {% set reel_products = [] %}
+            {% endif %}
+            {% set reel_product_count = reel_products|length %}
+            {% set reel_product_ids = [] %}
+            {% for product in reel_products %}
+              {% set reel_product_id = product.id|default(product.value|default(product)) %}
+              {% if reel_product_id %}
+                {% set reel_product_ids = reel_product_ids|merge([reel_product_id]) %}
+              {% endif %}
+            {% endfor %}
+            {% set reel_product_count = reel_product_ids|length %}
+            {% set reel_primary_product = null %}
+            {% set reel_primary_raw = reel.primary_product|default(null) %}
+            {% set reel_primary_id = '' %}
+            {% if reel_primary_raw %}
+              {% if reel_primary_raw is iterable %}
+                {% set reel_primary_raw = reel_primary_raw|first %}
+              {% endif %}
+              {% if reel_primary_raw is iterable %}
+                {% set reel_primary_id = reel_primary_raw.id|default(reel_primary_raw.value|default('')) %}
+              {% elseif reel_primary_raw %}
+                {% set reel_primary_id = reel_primary_raw %}
+              {% endif %}
+              {% if reel_primary_id %}
+                {% for product in reel_products %}
+                  {% set reel_product_item_id = product.id|default(product.value|default('')) %}
+                  {% if reel_product_item_id and (reel_product_item_id ~ '') == (reel_primary_id ~ '') %}
+                    {% set reel_primary_product = product %}
+                  {% endif %}
+                {% endfor %}
+              {% elseif reel_primary_raw is iterable %}
+                {% set reel_primary_product = reel_primary_raw %}
+              {% endif %}
+            {% endif %}
+            {% if not reel_primary_product and reel_product_count %}
+              {% set reel_primary_product = reel_products|first %}
+            {% endif %}
+            {% set reel_primary_title = reel_primary_product.name|default(reel_primary_product.title|default(reel_primary_product.label|default(''))) %}
+            {% set reel_primary_image = '' %}
+            {% if reel_primary_product and reel_primary_product.image is defined %}
+              {% if reel_primary_product.image is iterable %}
+                {% set reel_primary_image = reel_primary_product.image.url|default(reel_primary_product.image.path|default('')) %}
+              {% else %}
+                {% set reel_primary_image = reel_primary_product.image|default('') %}
+              {% endif %}
+            {% endif %}
+            {% if not reel_primary_image %}
+              {% set reel_primary_image = reel_primary_product.thumbnail|default('') %}
+            {% endif %}
+            {% set reel_cta_kind = 'none' %}
+            {% if reel_cta_mode == 'products' and reel_product_count %}
+              {% set reel_cta_kind = 'products' %}
+            {% elseif reel_cta_mode == 'link' and reel_cta_url %}
+              {% set reel_cta_kind = 'link' %}
+            {% elseif reel_cta_mode == 'auto' %}
+              {% if reel_product_count %}
+                {% set reel_cta_kind = 'products' %}
+              {% elseif reel_cta_url %}
+                {% set reel_cta_kind = 'link' %}
+              {% endif %}
+            {% endif %}
+            {% set has_external_video = video_mode == 'external' and reel.video_url %}
+            {% set has_youtube_video = video_mode == 'youtube' and reel.youtube_id %}
+            {% set has_media = has_external_video or has_youtube_video or reel.poster %}
+            {% set reel_creator_name = reel.creator_name|default('') %}
+            {% set reel_caption = reel.caption|default('') %}
+            {% set reel_alt = reel_caption ? reel_caption : (reel_creator_name ? reel_creator_name : 'Reel preview') %}
+            {% set reel_strip_id = block_id ~ '-strip-' ~ loop.index0 %}
+              <article
+                class="influencer-pack__reel-card"
+                data-index="{{ loop.index0 }}"
+                data-mode="{{ video_mode }}"
+                data-has-external="{{ has_external_video ? 'true' : 'false' }}"
+                data-has-youtube="{{ has_youtube_video ? 'true' : 'false' }}">
+              <div class="influencer-pack__reel-media">
+                {% if reel.poster %}
+                  <img
+                    class="influencer-pack__poster"
+                    src="{{ reel.poster }}"
+                    alt="{{ reel_alt }}"
+                    loading="{{ loop.index <= 2 ? 'eager' : 'lazy' }}">
+                {% endif %}
+
+                {% if has_external_video %}
+                  <video
+                    class="influencer-pack__video"
+                    playsinline
+                    preload="none"
+                    poster="{{ reel.poster }}"
+                    {{ autoplay_enabled and muted_enabled ? 'autoplay' : '' }}
+                    {{ muted_enabled ? 'loop' : '' }}
+                    {{ muted_enabled ? 'muted' : '' }}>
+                    <source src="{{ reel.video_url }}">
+                  </video>
+                {% elseif has_youtube_video %}
+                  <div class="influencer-pack__youtube" hidden>
+                    <lite-youtube videoid="{{ reel.youtube_id }}" params="rel=0"></lite-youtube>
+                  </div>
+                {% endif %}
+
+                {% if has_media %}
+                  <button
+                    type="button"
+                    class="influencer-pack__media-hit-target"
+                    aria-label="{{ trans('common.actions.play')|default('Play reel') }}">
+                  </button>
+                {% endif %}
+
+                <div class="influencer-pack__reel-top">
+                  {% if reel_creator_name %}
+                    <span class="influencer-pack__reel-creator">{{ reel_creator_name }}</span>
+                  {% endif %}
+                  {% if reel.promo_code %}
+                    <span class="influencer-pack__code-group">
+                      <span class="influencer-pack__reel-code" dir="ltr">{{ reel.promo_code }}</span>
+                      <button type="button" class="influencer-pack__copy-code" data-code="{{ reel.promo_code|e('html_attr') }}">{{ copy_button_text }}</button>
+                    </span>
+                  {% endif %}
+                </div>
+
+                {% if reel_primary_product and reel_product_count %}
+                  <button
+                    type="button"
+                    class="influencer-pack__reel-product-pin"
+                    data-open-strip="{{ reel_strip_id }}"
+                    data-product-ids="{{ reel_product_ids|join(',') }}"
+                    aria-label="عرض المنتجات">
+                    <span class="influencer-pack__reel-product-pin-label">عرض المنتجات</span>
+                  </button>
+                {% endif %}
+
+                <div class="influencer-pack__reel-bottom{{ has_external_video ? ' has-mute' : '' }}">
+                  {% if has_external_video %}
+                    <button
+                      type="button"
+                      class="influencer-pack__mute-toggle"
+                      aria-pressed="{{ muted_enabled ? 'true' : 'false' }}"
+                      aria-label="{{ muted_enabled ? 'تشغيل الصوت' : 'كتم الصوت' }}"
+                      data-label-muted="تشغيل الصوت"
+                      data-label-unmuted="كتم الصوت">
+                      <i class="{{ muted_enabled ? 'sicon-volume-off' : 'sicon-volume' }}" aria-hidden="true"></i>
+                      <span class="sr-only">{{ muted_enabled ? 'تشغيل الصوت' : 'كتم الصوت' }}</span>
+                    </button>
+                  {% endif %}
+                  <button
+                    type="button"
+                    class="influencer-pack__play-toggle"
+                    aria-label="{{ trans('common.actions.play')|default('Play reel') }}"
+                    {{ has_media ? '' : 'disabled' }}>
+                    <span class="influencer-pack__play-glyph" aria-hidden="true"></span>
+                  </button>
+                  <div class="influencer-pack__progress" aria-hidden="true">
+                    <span class="influencer-pack__progress-fill"></span>
+                  </div>
+                  {% if reel_cta_kind == 'products' %}
+                    <button type="button" class="influencer-pack__cta influencer-pack__cta--products" data-open-strip="{{ reel_strip_id }}">{{ reel_cta_text }}</button>
+                  {% elseif reel_cta_kind == 'link' %}
+                    <a href="{{ reel_cta_url }}" class="influencer-pack__cta">{{ reel_cta_text }}</a>
+                  {% endif %}
+                </div>
+
+                {% if reel_product_count %}
+                  <div
+                    class="influencer-pack__reel-strip"
+                    id="{{ reel_strip_id }}"
+                    hidden
+                    aria-hidden="true"
+                    data-product-ids="{{ reel_product_ids|join(',') }}">
+                    <button type="button" class="influencer-pack__reel-strip-backdrop" data-close-strip aria-label="إغلاق نافذة المنتجات"></button>
+                    <div class="influencer-pack__reel-strip-panel" role="dialog" aria-modal="false" aria-label="تسوق منتجات الريل">
+                      <header class="influencer-pack__reel-strip-head">
+                        <h3>تسوق منتجات الريل</h3>
+                        <button type="button" class="influencer-pack__reel-strip-close" data-close-strip aria-label="إغلاق">
+                          <i class="sicon-cancel"></i>
+                        </button>
+                      </header>
+                      <div class="influencer-pack__reel-strip-products">
+                        <div class="influencer-pack__strip-list" data-strip-products data-loading-text="جاري تحميل المنتجات..." data-error-text="تعذر تحميل المنتجات حالياً"></div>
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+              </div>
+
+              {% if reel_caption %}
+                <p class="influencer-pack__caption">{{ reel_caption }}</p>
+              {% endif %}
+
+              {% if not has_external_video and not has_youtube_video and reel_cta_kind == 'link' %}
+                <a href="{{ reel_cta_url }}" class="influencer-pack__cta influencer-pack__cta--fallback">{{ reel_cta_text }}</a>
+              {% endif %}
+
+              </article>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+    {% endif %}
+
+    {% if show_promo_blocks %}
+      <section class="influencer-pack__promos" aria-label="{{ promo_aria_label }}">
+        {% for promo in promo_blocks %}
+          {% set promo_cta_url = promo.cta_url|default('') %}
+          {% if promo_cta_url is iterable %}
+            {% set promo_cta_item = promo_cta_url|first %}
+            {% if promo_cta_item is iterable %}
+              {% set promo_cta_url = promo_cta_item.value|default('') %}
+            {% else %}
+              {% set promo_cta_url = promo_cta_item|default('') %}
+            {% endif %}
+          {% endif %}
+          <article class="influencer-pack__promo">
+            <div class="influencer-pack__promo-head">
+              {% if promo.title %}
+                <h3 class="influencer-pack__promo-title">{{ promo.title }}</h3>
+              {% endif %}
+              {% if promo.code %}
+                <span class="influencer-pack__code-group influencer-pack__code-group--promo">
+                  <p class="influencer-pack__promo-code" dir="ltr">{{ promo.code }}</p>
+                  <button type="button" class="influencer-pack__copy-code" data-code="{{ promo.code|e('html_attr') }}">{{ copy_button_text }}</button>
+                </span>
+              {% endif %}
+            </div>
+            {% if promo.description %}
+              <p class="influencer-pack__promo-description">{{ promo.description }}</p>
+            {% endif %}
+            {% if promo.cta_text and promo_cta_url %}
+              <a href="{{ promo_cta_url }}" class="influencer-pack__promo-link">{{ promo.cta_text }}</a>
+            {% endif %}
+          </article>
+        {% endfor %}
+      </section>
+    {% endif %}
+
+    {% if show_picked_products %}
+      <section class="influencer-pack__products">
+        {% set picked_products_title = component.picked_products_title|default('') %}
+        {% set picked_limit = picked_products|length %}
+        {% if picked_limit > 12 %}
+          {% set picked_limit = 12 %}
+        {% endif %}
+        {% if picked_products_title %}
+          <div class="s-block__title influencer-pack__products-title">
+            <div class="right-side">
+              <h2>{{ picked_products_title }}</h2>
+            </div>
+          </div>
+        {% endif %}
+        <salla-products-slider
+          source="selected"
+          source-value="[{{ picked_products|map((product) => product.id)|join(',') }}]"
+          limit="{{ picked_limit }}"
+          slider-id="influencer-pack-products-{{ position }}"
+          block-title=" ">
+        </salla-products-slider>
+      </section>
+    {% endif %}
+  </div>
+</section>

@@ -1,0 +1,148 @@
+{% set social_enabled = theme.settings.get('social_follow_enabled', true) %}
+{% if social_enabled %}
+  {% set hide_on_cart_checkout = theme.settings.get('social_follow_hide_on_cart_checkout', true) %}
+  {% set is_checkout_like = is_page('cart') or is_page('checkout') or is_page('checkout.index') or is_page('checkout.payment') or is_page('checkout.shipping') or is_page('checkout.complete') %}
+  {% set should_hide_by_page = hide_on_cart_checkout and is_checkout_like %}
+
+  {% set instagram_enabled = theme.settings.get('social_follow_instagram_enabled', false) %}
+  {% set tiktok_enabled = theme.settings.get('social_follow_tiktok_enabled', false) %}
+  {% set snapchat_enabled = theme.settings.get('social_follow_snapchat_enabled', false) %}
+  {% set youtube_enabled = theme.settings.get('social_follow_youtube_enabled', false) %}
+  {% set x_enabled = theme.settings.get('social_follow_x_enabled', false) %}
+  {% set whatsapp_enabled = theme.settings.get('social_follow_whatsapp_enabled', false) %}
+
+  {% set instagram_url = theme.settings.get('social_follow_instagram_url', '')|trim %}
+  {% set tiktok_url = theme.settings.get('social_follow_tiktok_url', '')|trim %}
+  {% set snapchat_url = theme.settings.get('social_follow_snapchat_url', '')|trim %}
+  {% set youtube_url = theme.settings.get('social_follow_youtube_url', '')|trim %}
+  {% set x_url = theme.settings.get('social_follow_x_url', '')|trim %}
+  {% set whatsapp_url = theme.settings.get('social_follow_whatsapp_url', '')|trim %}
+
+  {% set has_instagram = instagram_enabled and instagram_url %}
+  {% set has_tiktok = tiktok_enabled and tiktok_url %}
+  {% set has_snapchat = snapchat_enabled and snapchat_url %}
+  {% set has_youtube = youtube_enabled and youtube_url %}
+  {% set has_x = x_enabled and x_url %}
+  {% set has_whatsapp = whatsapp_enabled and whatsapp_url %}
+
+  {% set has_any_platform = has_instagram or has_tiktok or has_snapchat or has_youtube or has_x or has_whatsapp %}
+
+  {% if not should_hide_by_page and has_any_platform %}
+    {% set position = theme.settings.get('social_follow_position', 'right-center') %}
+    {% set mobile_mode = theme.settings.get('social_follow_mobile_mode', 'bottom-dock') %}
+    {% set style_preset = theme.settings.get('social_follow_style_preset', 'brand') %}
+    {% set icon_mode = theme.settings.get('social_follow_icon_mode', 'icon-only') %}
+    {% set size = theme.settings.get('social_follow_size', 'regular') %}
+    {% set shape = theme.settings.get('social_follow_shape', 'pill') %}
+    {% set show_mobile_labels = theme.settings.get('social_follow_show_mobile_labels', false) %}
+    {% set expandable_mobile = theme.settings.get('social_follow_expandable_mobile', true) %}
+    {% set expanded_mobile = theme.settings.get('social_follow_default_expanded_mobile', false) %}
+
+    {% set desktop_offset_x = theme.settings.get('social_follow_desktop_offset_x', 20) %}
+    {% set desktop_offset_y = theme.settings.get('social_follow_desktop_offset_y', 20) %}
+    {% set mobile_offset_x = theme.settings.get('social_follow_mobile_offset_x', 0) %}
+    {% set mobile_offset_y = theme.settings.get('social_follow_mobile_offset_y', 14) %}
+
+    {% set custom_bg_color = theme.settings.get('social_follow_custom_bg_color', '#111111') %}
+    {% set custom_icon_color = theme.settings.get('social_follow_custom_icon_color', '#ffffff') %}
+
+    <aside
+      class="s-social-follow-floating"
+      data-position="{{ position }}"
+      data-mobile-mode="{{ mobile_mode }}"
+      data-style-preset="{{ style_preset }}"
+      data-icon-mode="{{ icon_mode }}"
+      data-size="{{ size }}"
+      data-shape="{{ shape }}"
+      data-show-mobile-labels="{{ show_mobile_labels ? 'true' : 'false' }}"
+      data-expandable-mobile="{{ expandable_mobile ? 'true' : 'false' }}"
+      data-expanded-mobile="{{ expanded_mobile ? 'true' : 'false' }}"
+      data-desktop-offset-x="{{ desktop_offset_x }}"
+      data-desktop-offset-y="{{ desktop_offset_y }}"
+      data-mobile-offset-x="{{ mobile_offset_x }}"
+      data-mobile-offset-y="{{ mobile_offset_y }}"
+      data-custom-bg-color="{{ custom_bg_color }}"
+      data-custom-icon-color="{{ custom_icon_color }}">
+      <nav class="social-follow-floating__nav" aria-label="{{ trans('social_follow.nav_label')|default('Follow us') }}">
+        {% if expandable_mobile %}
+          <button
+            type="button"
+            class="social-follow-floating__toggle"
+            aria-controls="social-follow-floating-list"
+            aria-expanded="{{ expanded_mobile ? 'true' : 'false' }}"
+            aria-label="{{ expanded_mobile ? trans('social_follow.toggle_close')|default('Hide social links') : trans('social_follow.toggle_open')|default('Show social links') }}">
+            <i class="sicon-share-alt" aria-hidden="true"></i>
+          </button>
+        {% endif %}
+
+        <ul id="social-follow-floating-list" class="social-follow-floating__list{{ expandable_mobile and not expanded_mobile ? ' is-collapsed-mobile' : '' }}">
+          {% if has_instagram %}
+            <li class="social-follow-floating__item">
+              <a class="social-follow-floating__link" data-platform="instagram" href="{{ instagram_url|e('html_attr') }}" target="_blank" rel="noopener noreferrer" aria-label="{{ trans('social_follow.platform.instagram')|default('Instagram') }}">
+                <span class="social-follow-floating__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.8A5.2 5.2 0 1 1 6.8 13 5.2 5.2 0 0 1 12 7.8Zm0 2A3.2 3.2 0 1 0 15.2 13 3.2 3.2 0 0 0 12 9.8ZM17.5 6.6a1.1 1.1 0 1 1-1.1 1.1 1.1 1.1 0 0 1 1.1-1.1Z" fill="currentColor"/></svg>
+                </span>
+                <span class="social-follow-floating__label">{{ trans('social_follow.platform.instagram')|default('Instagram') }}</span>
+              </a>
+            </li>
+          {% endif %}
+
+          {% if has_tiktok %}
+            <li class="social-follow-floating__item">
+              <a class="social-follow-floating__link" data-platform="tiktok" href="{{ tiktok_url|e('html_attr') }}" target="_blank" rel="noopener noreferrer" aria-label="{{ trans('social_follow.platform.tiktok')|default('TikTok') }}">
+                <span class="social-follow-floating__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.4 3c.5 2.2 1.8 3.8 4.6 4v2.8a8 8 0 0 1-3.4-.9V15a6.5 6.5 0 1 1-5.6-6.4v2.9a3.7 3.7 0 1 0 2.8 3.6V3h1.6Z" fill="currentColor"/></svg>
+                </span>
+                <span class="social-follow-floating__label">{{ trans('social_follow.platform.tiktok')|default('TikTok') }}</span>
+              </a>
+            </li>
+          {% endif %}
+
+          {% if has_snapchat %}
+            <li class="social-follow-floating__item">
+              <a class="social-follow-floating__link" data-platform="snapchat" href="{{ snapchat_url|e('html_attr') }}" target="_blank" rel="noopener noreferrer" aria-label="{{ trans('social_follow.platform.snapchat')|default('Snapchat') }}">
+                <span class="social-follow-floating__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.2c2.8 0 5 2.3 5 5v2.2c.4.2 1 .4 1.6.5.6.1.8.8.3 1.2-.5.4-1.2.7-1.8.8-.2.7-.8 1.3-1.6 1.7.4.7 1 1.2 1.8 1.4.4.1.5.6.2.9-.6.6-1.5 1-2.4 1-.6 0-1.2.3-1.5.8l-.6 1h-1l-.6-1c-.3-.5-.9-.8-1.5-.8-.9 0-1.8-.4-2.4-1-.3-.3-.2-.8.2-.9.8-.2 1.4-.7 1.8-1.4-.8-.4-1.4-1-1.6-1.7-.6-.1-1.3-.4-1.8-.8-.5-.4-.3-1.1.3-1.2.6-.1 1.2-.3 1.6-.5V7.2c0-2.7 2.2-5 5-5Z" fill="currentColor"/></svg>
+                </span>
+                <span class="social-follow-floating__label">{{ trans('social_follow.platform.snapchat')|default('Snapchat') }}</span>
+              </a>
+            </li>
+          {% endif %}
+
+          {% if has_youtube %}
+            <li class="social-follow-floating__item">
+              <a class="social-follow-floating__link" data-platform="youtube" href="{{ youtube_url|e('html_attr') }}" target="_blank" rel="noopener noreferrer" aria-label="{{ trans('social_follow.platform.youtube')|default('YouTube') }}">
+                <span class="social-follow-floating__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 8.2a3 3 0 0 0-2.1-2.1C17 5.6 12 5.6 12 5.6s-5 0-6.9.5A3 3 0 0 0 3 8.2 31.6 31.6 0 0 0 2.6 12c0 1.3.1 2.6.4 3.8a3 3 0 0 0 2.1 2.1c1.9.5 6.9.5 6.9.5s5 0 6.9-.5a3 3 0 0 0 2.1-2.1c.3-1.2.4-2.5.4-3.8 0-1.3-.1-2.6-.4-3.8ZM10.4 15.1V8.9l5.3 3.1-5.3 3.1Z" fill="currentColor"/></svg>
+                </span>
+                <span class="social-follow-floating__label">{{ trans('social_follow.platform.youtube')|default('YouTube') }}</span>
+              </a>
+            </li>
+          {% endif %}
+
+          {% if has_x %}
+            <li class="social-follow-floating__item">
+              <a class="social-follow-floating__link" data-platform="x" href="{{ x_url|e('html_attr') }}" target="_blank" rel="noopener noreferrer" aria-label="{{ trans('social_follow.platform.x')|default('X') }}">
+                <span class="social-follow-floating__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 3h4.2l4.6 6.4L18.4 3H21l-7.1 8.1L21.5 21h-4.2l-5-7-6.2 7H3.5l7.5-8.6L4 3Zm4.9 1.8H7.2l9 12.4h1.7L8.9 4.8Z" fill="currentColor"/></svg>
+                </span>
+                <span class="social-follow-floating__label">{{ trans('social_follow.platform.x')|default('X') }}</span>
+              </a>
+            </li>
+          {% endif %}
+
+          {% if has_whatsapp %}
+            <li class="social-follow-floating__item">
+              <a class="social-follow-floating__link" data-platform="whatsapp" href="{{ whatsapp_url|e('html_attr') }}" target="_blank" rel="noopener noreferrer" aria-label="{{ trans('social_follow.platform.whatsapp')|default('WhatsApp') }}">
+                <span class="social-follow-floating__icon" aria-hidden="true">
+                  <i class="sicon-whatsapp"></i>
+                </span>
+                <span class="social-follow-floating__label">{{ trans('social_follow.platform.whatsapp')|default('WhatsApp') }}</span>
+              </a>
+            </li>
+          {% endif %}
+        </ul>
+      </nav>
+    </aside>
+  {% endif %}
+{% endif %}

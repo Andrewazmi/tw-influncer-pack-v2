@@ -1,0 +1,139 @@
+/* Salla Notification Styles */
+.salla-notification {
+  @apply rounded-lg !important;
+  padding: 1.5rem !important;
+  width: auto !important;
+  min-width: 300px !important;
+  max-width: 90% !important;
+
+  .swal2-icon {
+    margin: 0 auto 1rem !important;
+    border: none !important;
+
+    &.swal2-success {
+      .swal2-success-ring {
+        border: 0.25em solid rgba(255, 255, 255, 0.15) !important;
+      }
+
+      [class^='swal2-success-line'] {
+        background-color: #ffffff !important;
+      }
+    }
+  }
+
+  .swal2-html-container {
+    @apply text-center text-base font-medium mb-4 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
+
+.salla-button {
+  @apply rounded-full py-2 px-8 text-sm font-medium !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+  transition: all 0.2s ease !important;
+  margin: 0.5rem 0 0 !important;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+  }
+}
+
+/* RTL Support */
+[dir="rtl"] .salla-notification {
+  font-family: inherit !important;
+
+  .salla-button {
+    font-family: inherit !important;
+  }
+}
+
+/* Toast Notification */
+.swal2-popup.swal2-toast {
+  box-sizing: border-box;
+  grid-column: 1/4 !important;
+  grid-row: 1/4 !important;
+  grid-template-columns: min-content auto min-content;
+  padding: 0.75rem 1rem;
+  overflow-y: hidden;
+  background: #fff;
+  box-shadow: 0 0 1px rgba(0,0,0,.075), 0 1px 2px rgba(0,0,0,.075), 1px 2px 4px rgba(0,0,0,.075), 1px 3px 8px rgba(0,0,0,.075), 2px 4px 16px rgba(0,0,0,.075);
+  pointer-events: all;
+  border-radius: 4px;
+
+  .swal2-title {
+    margin: 0;
+    padding: 0;
+    font-size: 0.875rem;
+    font-weight: normal;
+    color: inherit;
+  }
+
+  .swal2-icon {
+    margin: 0;
+    padding: 0;
+    width: 1.5em;
+    min-width: 1.5em;
+    height: 1.5em;
+
+    &.swal2-success {
+      border-color: transparent;
+
+      [class^='swal2-success-line'] {
+        background-color: currentColor;
+      }
+
+      .swal2-success-ring {
+        border-color: currentColor;
+      }
+    }
+  }
+
+  .swal2-timer-progress-bar {
+    height: 2px;
+    opacity: 0.4;
+  }
+
+  .swal2-close {
+    margin: 0 0 0 0.5rem;
+    padding: 0;
+    width: 1.2em;
+    height: 1.2em;
+    font-size: 1.2em;
+    color: inherit;
+    opacity: 0.5;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+/* RTL Support */
+[dir="rtl"] .swal2-popup.swal2-toast {
+  .swal2-close {
+    margin: 0 0.5rem 0 0;
+  }
+}
+
+/* Animation */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animated {
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+}
+
+.fadeInDown {
+  animation-name: fadeInDown;
+}

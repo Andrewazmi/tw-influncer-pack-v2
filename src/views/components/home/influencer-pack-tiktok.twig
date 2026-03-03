@@ -1,0 +1,97 @@
+{#
+| Variable            | Type       | Description
+|---------------------|------------|---------------------------------------------
+| component           | object     | Component settings from twilight.json
+| component.reels     | object[]   | TikTok URLs collection
+| position            | int        | Component order on home page
+#}
+{% set block_id = 'influencer-pack-tiktok-' ~ position %}
+{% set reels = component.reels|default([]) %}
+{% if reels is not iterable %}
+  {% set reels = [] %}
+{% endif %}
+{% set section_title = component.title|default('') %}
+{% set section_subtitle = component.subtitle|default('') %}
+{% set section_bg = component.section_bg_color|default('#c9ddd1') %}
+{% set nav_button_bg = component.nav_button_bg_color|default('#dff0a8') %}
+{% set nav_button_icon = component.nav_button_icon_color|default('#5f4c4c') %}
+{% set show_nav = component.show_navigation is same as(false) ? false : true %}
+{% set size_mode = component.card_size|default('regular') %}
+{% if size_mode is iterable %}
+  {% set size_mode_item = size_mode|first %}
+  {% if size_mode_item is iterable %}
+    {% set size_mode = size_mode_item.value|default('regular') %}
+  {% else %}
+    {% set size_mode = size_mode_item|default('regular') %}
+  {% endif %}
+{% endif %}
+{% if size_mode not in ['compact', 'regular', 'large'] %}
+  {% set size_mode = 'regular' %}
+{% endif %}
+
+<section
+  id="{{ block_id }}"
+  class="s-block s-block--influencer-pack-tiktok"
+  data-size="{{ size_mode }}"
+  data-bg-color="{{ section_bg }}"
+  data-nav-bg-color="{{ nav_button_bg }}"
+  data-nav-icon-color="{{ nav_button_icon }}">
+  <div class="container influencer-pack-tiktok__container">
+    {% if section_title or section_subtitle %}
+      <header class="influencer-pack-tiktok__header">
+        {% if section_title %}
+          <h2 class="influencer-pack-tiktok__title">{{ section_title }}</h2>
+        {% endif %}
+        {% if section_subtitle %}
+          <p class="influencer-pack-tiktok__subtitle">{{ section_subtitle }}</p>
+        {% endif %}
+      </header>
+    {% endif %}
+
+    {% if reels|length %}
+      <section class="influencer-pack-tiktok__shell" aria-label="{{ section_title ? section_title : 'TikTok videos' }}">
+        {% if show_nav %}
+          <button
+            type="button"
+            class="influencer-pack-tiktok__nav influencer-pack-tiktok__nav--prev"
+            aria-label="{{ trans('common.actions.previous')|default('Previous reel') }}">
+            <i class="sicon-keyboard_arrow_right"></i>
+          </button>
+          <button
+            type="button"
+            class="influencer-pack-tiktok__nav influencer-pack-tiktok__nav--next"
+            aria-label="{{ trans('common.actions.next')|default('Next reel') }}">
+            <i class="sicon-keyboard_arrow_left"></i>
+          </button>
+        {% endif %}
+
+        <div class="influencer-pack-tiktok__track" tabindex="0" aria-label="{{ trans('common.messages.scroll')|default('Scrollable reels') }}">
+          {% for reel in reels %}
+            {% set tiktok_url = reel.tiktok_url|default('') %}
+            {% if tiktok_url is iterable %}
+              {% set tiktok_url_item = tiktok_url|first %}
+              {% if tiktok_url_item is iterable %}
+                {% set tiktok_url = tiktok_url_item.value|default('') %}
+              {% else %}
+                {% set tiktok_url = tiktok_url_item|default('') %}
+              {% endif %}
+            {% endif %}
+            {% set tiktok_id = '' %}
+            {% if tiktok_url and '/video/' in tiktok_url %}
+              {% set tiktok_id = tiktok_url|split('/video/')|last|split('?')|first|split('/')|first|trim %}
+            {% endif %}
+            {% if tiktok_id %}
+              <article class="influencer-pack-tiktok__card" data-index="{{ loop.index0 }}" aria-current="{{ loop.first ? 'true' : 'false' }}">
+                <blockquote class="tiktok-embed" cite="{{ tiktok_url|e('html_attr') }}" data-video-id="{{ tiktok_id|e('html_attr') }}" data-embed-from="oembed">
+                  <section>
+                    <a target="_blank" rel="noopener" href="{{ tiktok_url|e('html_attr') }}">TikTok</a>
+                  </section>
+                </blockquote>
+              </article>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+  </div>
+</section>

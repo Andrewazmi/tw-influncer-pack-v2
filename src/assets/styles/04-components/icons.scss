@@ -1,0 +1,74 @@
+/*------------------------------------*\
+  #ICONS COMPONENT
+\*------------------------------------*/
+
+.s-block--icons {
+  background-color: var(--color-bg-secondary, #f9f8f0);
+
+  .grid {
+    justify-content: center;
+  }
+
+  .flex {
+    position: relative;
+    transition: all 0.3s ease;
+
+    &.has-link {
+      cursor: pointer;
+
+      &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 0.5rem;
+        border: 1px solid transparent;
+        transition: all 0.3s ease;
+      }
+
+      &:hover {
+        .icon-wrapper {
+          transform: translateY(-5px);
+        }
+
+        &::after {
+          border-color: rgba(0, 0, 0, 0.1);
+        }
+      }
+    }
+  }
+
+  .icon-wrapper {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    transition: transform 0.3s ease;
+
+    img {
+      max-width: 100%;
+      height: auto;
+      transition: all 0.3s ease;
+    }
+  }
+
+  // Paper tear effect for the top of the section
+  &.paper-tear-effect {
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: 0;
+      right: 0;
+      height: 15px;
+      // Using a dynamic SVG with currentColor to match the parent background
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 30' preserveAspectRatio='none'%3E%3Cpath d='M0,0 C300,30 600,30 900,20 C1000,15 1100,5 1200,0 L1200,30 L0,30 Z' fill='%23f4f3e5'/%3E%3C/svg%3E");
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      z-index: 1;
+    }
+  }
+}

@@ -1,0 +1,7 @@
+fix: Improve RTL layout for video-with-products component
+
+- Update Twig template to correctly handle RTL layout and reverse option
+- Enhance CSS for proper RTL support and positioning
+- Update JavaScript to better handle RTL layout and add debugging
+- Fix video and product positioning in RTL mode
+- Ensure proper display in both RTL and LTR modes with different layout options

@@ -1,0 +1,358 @@
+  - path: /tailwind.config.js
+    type: file
+  - path: /CHANGELOG.md
+    type: file
+  - path: /webpack.config.js
+    type: file
+  - path: /README.md
+    type: file
+  - path: /public
+    type: directory
+    contents:
+    - path: /public/product-card.js
+      type: file
+    - path: /public/order.js
+      type: file
+    - path: /public/main-menu.js
+      type: file
+    - path: /public/images
+      type: directory
+      contents:
+      - path: /public/images/s-empty-small.png
+        type: file
+      - path: /public/images/s-empty.png
+        type: file
+      - path: /public/images/s-empty-square.png
+        type: file
+      - path: /public/images/placeholder.png
+        type: file
+      - path: /public/images/s-empty-wide.png
+        type: file
+      - path: /public/images/delivery-bro.svg
+        type: file
+    - path: /public/testimonials.js
+      type: file
+    - path: /public/app.css
+      type: file
+    - path: /public/home.js
+      type: file
+    - path: /public/testimonials.js.LICENSE.txt
+      type: file
+    - path: /public/product.js.LICENSE.txt
+      type: file
+    - path: /public/pages.js
+      type: file
+    - path: /public/app.js.LICENSE.txt
+      type: file
+    - path: /public/product.js
+      type: file
+    - path: /public/wishlist-card.js
+      type: file
+    - path: /public/app.js
+      type: file
+    - path: /public/checkout.js
+      type: file
+  - path: /package.json
+    type: file
+  - path: /postcss.config.js
+    type: file
+  - path: /twilight.json
+    type: file
+  - path: /src
+    type: directory
+    contents:
+    - path: /src/locales
+      type: directory
+      contents:
+      - path: /src/locales/en.json
+        type: file
+      - path: /src/locales/ar.json
+        type: file
+    - path: /src/views
+      type: directory
+      contents:
+      - path: /src/views/components
+        type: directory
+        contents:
+        - path: /src/views/components/home
+          type: directory
+          contents:
+          - path: /src/views/components/home/fixed-banner.twig
+            type: file
+          - path: /src/views/components/home/youtube.twig
+            type: file
+          - path: /src/views/components/home/featured-products-style2.twig
+            type: file
+          - path: /src/views/components/home/store-features.twig
+            type: file
+          - path: /src/views/components/home/slider-products-with-header.twig
+            type: file
+          - path: /src/views/components/home/fixed-products.twig
+            type: file
+          - path: /src/views/components/home/featured-products-style3.twig
+            type: file
+          - path: /src/views/components/home/testimonials.twig
+            type: file
+          - path: /src/views/components/home/brands.twig
+            type: file
+          - path: /src/views/components/home/parallax-background.twig
+            type: file
+          - path: /src/views/components/home/square-photos.twig
+            type: file
+          - path: /src/views/components/home/latest-products.twig
+            type: file
+          - path: /src/views/components/home/featured-products-style1.twig
+            type: file
+          - path: /src/views/components/home/products-slider.twig
+            type: file
+          - path: /src/views/components/home/enhanced-slider.twig
+            type: file
+          - path: /src/views/components/home/main-links.twig
+            type: file
+          - path: /src/views/components/home/enhanced-square-banners.twig
+            type: file
+          - path: /src/views/components/home/photos-slider.twig
+            type: file
+        - path: /src/views/components/footer
+          type: directory
+          contents:
+          - path: /src/views/components/footer/footer.twig
+            type: file
+        - path: /src/views/components/header
+          type: directory
+          contents:
+          - path: /src/views/components/header/header.twig
+            type: file
+      - path: /src/views/layouts
+        type: directory
+        contents:
+        - path: /src/views/layouts/customer.twig
+          type: file
+        - path: /src/views/layouts/master.twig
+          type: file
+      - path: /src/views/pages
+        type: directory
+        contents:
+        - path: /src/views/pages/loyalty.twig
+          type: file
+        - path: /src/views/pages/landing-page.twig
+          type: file
+        - path: /src/views/pages/thank-you.twig
+          type: file
+        - path: /src/views/pages/brands
+          type: directory
+          contents:
+          - path: /src/views/pages/brands/index.twig
+            type: file
+          - path: /src/views/pages/brands/single.twig
+            type: file
+        - path: /src/views/pages/cart.twig
+          type: file
+        - path: /src/views/pages/product
+          type: directory
+          contents:
+          - path: /src/views/pages/product/index.twig
+            type: file
+          - path: /src/views/pages/product/single.twig
+            type: file
+        - path: /src/views/pages/blog
+          type: directory
+          contents:
+          - path: /src/views/pages/blog/index.twig
+            type: file
+          - path: /src/views/pages/blog/single.twig
+            type: file
+        - path: /src/views/pages/testimonials.twig
+          type: file
+        - path: /src/views/pages/index.twig
+          type: file
+        - path: /src/views/pages/page-single.twig
+          type: file
+        - path: /src/views/pages/partials
+          type: directory
+          contents:
+          - path: /src/views/pages/partials/product
+            type: directory
+            contents:
+            - path: /src/views/pages/partials/product/options.twig
+              type: file
+            - path: /src/views/pages/partials/product/reservations.twig
+              type: file
+          - path: /src/views/pages/partials/loading-screen-assets.twig
+            type: file
+        - path: /src/views/pages/customer
+          type: directory
+          contents:
+          - path: /src/views/pages/customer/wallet.twig
+            type: file
+          - path: /src/views/pages/customer/wishlist.twig
+            type: file
+          - path: /src/views/pages/customer/profile.twig
+            type: file
+          - path: /src/views/pages/customer/orders
+            type: directory
+            contents:
+            - path: /src/views/pages/customer/orders/index.twig
+              type: file
+            - path: /src/views/pages/customer/orders/single.twig
+              type: file
+          - path: /src/views/pages/customer/notifications.twig
+            type: file
+    - path: /src/assets
+      type: directory
+      contents:
+      - path: /src/assets/images
+        type: directory
+        contents:
+        - path: /src/assets/images/s-empty-small.png
+          type: file
+        - path: /src/assets/images/s-empty.png
+          type: file
+        - path: /src/assets/images/s-empty-square.png
+          type: file
+        - path: /src/assets/images/placeholder.png
+          type: file
+        - path: /src/assets/images/s-empty-wide.png
+          type: file
+        - path: /src/assets/images/delivery-bro.svg
+          type: file
+      - path: /src/assets/js
+        type: directory
+        contents:
+        - path: /src/assets/js/order.js
+          type: file
+        - path: /src/assets/js/thankyou.js
+          type: file
+        - path: /src/assets/js/base-page.js
+          type: file
+        - path: /src/assets/js/wishlist.js
+          type: file
+        - path: /src/assets/js/products.js
+          type: file
+        - path: /src/assets/js/cart.js
+          type: file
+        - path: /src/assets/js/twilight.js
+          type: file
+        - path: /src/assets/js/testimonials.js
+          type: file
+        - path: /src/assets/js/home.js
+          type: file
+        - path: /src/assets/js/blog.js
+          type: file
+        - path: /src/assets/js/loyalty.js
+          type: file
+        - path: /src/assets/js/app-helpers.js
+          type: file
+        - path: /src/assets/js/product.js
+          type: file
+        - path: /src/assets/js/partials
+          type: directory
+          contents:
+          - path: /src/assets/js/partials/product-card.js
+            type: file
+          - path: /src/assets/js/partials/main-menu.js
+            type: file
+          - path: /src/assets/js/partials/tooltip.js
+            type: file
+          - path: /src/assets/js/partials/anime.js
+            type: file
+          - path: /src/assets/js/partials/image-zoom.js
+            type: file
+          - path: /src/assets/js/partials/wishlist-card.js
+            type: file
+          - path: /src/assets/js/partials/validate-product-options.js
+            type: file
+        - path: /src/assets/js/app.js
+          type: file
+        - path: /src/assets/js/brands.js
+          type: file
+      - path: /src/assets/styles
+        type: directory
+        contents:
+        - path: /src/assets/styles/01-settings
+          type: directory
+          contents:
+          - path: /src/assets/styles/01-settings/fonts.scss
+            type: file
+          - path: /src/assets/styles/01-settings/global.scss
+            type: file
+          - path: /src/assets/styles/01-settings/breakpoints.scss
+            type: file
+          - path: /src/assets/styles/01-settings/tailwind.scss
+            type: file
+        - path: /src/assets/styles/05-utilities
+          type: directory
+          contents:
+          - path: /src/assets/styles/05-utilities/font-customization.scss
+            type: file
+          - path: /src/assets/styles/05-utilities/safari-fixes.scss
+            type: file
+          - path: /src/assets/styles/05-utilities/chat-bots.scss
+            type: file
+          - path: /src/assets/styles/05-utilities/swal.scss
+            type: file
+        - path: /src/assets/styles/04-components
+          type: directory
+          contents:
+          - path: /src/assets/styles/04-components/brands.scss
+            type: file
+          - path: /src/assets/styles/04-components/product.scss
+            type: file
+          - path: /src/assets/styles/04-components/menus.scss
+            type: file
+          - path: /src/assets/styles/04-components/virtooal.scss
+            type: file
+          - path: /src/assets/styles/04-components/home-blocks.scss
+            type: file
+          - path: /src/assets/styles/04-components/filters.scss
+            type: file
+          - path: /src/assets/styles/04-components/gifting.scss
+            type: file
+          - path: /src/assets/styles/04-components/user-pages.scss
+            type: file
+          - path: /src/assets/styles/04-components/slider.scss
+            type: file
+          - path: /src/assets/styles/04-components/loyalty.scss
+            type: file
+          - path: /src/assets/styles/04-components/landing-page.scss
+            type: file
+          - path: /src/assets/styles/04-components/user-menu.scss
+            type: file
+          - path: /src/assets/styles/04-components/header.scss
+            type: file
+          - path: /src/assets/styles/04-components/no-content-placeholder.scss
+            type: file
+          - path: /src/assets/styles/04-components/footer.scss
+            type: file
+        - path: /src/assets/styles/03-elements
+          type: directory
+          contents:
+          - path: /src/assets/styles/03-elements/radio-images.scss
+            type: file
+          - path: /src/assets/styles/03-elements/form.scss
+            type: file
+          - path: /src/assets/styles/03-elements/buttons.scss
+            type: file
+          - path: /src/assets/styles/03-elements/radio.scss
+            type: file
+        - path: /src/assets/styles/02-generic
+          type: directory
+          contents:
+          - path: /src/assets/styles/02-generic/reset.scss
+            type: file
+          - path: /src/assets/styles/02-generic/lazyload.scss
+            type: file
+          - path: /src/assets/styles/02-generic/tooltip.scss
+            type: file
+          - path: /src/assets/styles/02-generic/common.scss
+            type: file
+          - path: /src/assets/styles/02-generic/ltr.scss
+            type: file
+          - path: /src/assets/styles/02-generic/_mixins.scss
+            type: file
+          - path: /src/assets/styles/02-generic/rtl.scss
+            type: file
+          - path: /src/assets/styles/02-generic/animations.scss
+            type: file
+        - path: /src/assets/styles/app.scss
+          type: file

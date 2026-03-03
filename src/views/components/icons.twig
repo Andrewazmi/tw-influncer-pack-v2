@@ -1,0 +1,67 @@
+{#
+| Variable                | Type    | Description                                  |
+|-------------------------|---------|----------------------------------------------|
+| component              | object  | Component settings from twilight.json         |
+#}
+
+{% set background_color = component.background_color|default('#f9f8f0') %}
+
+{% if component.paper_tear_effect %}
+<style>
+  .s-block--icons.paper-tear-effect::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 30' preserveAspectRatio='none'%3E%3Cpath d='M0,0 C300,30 600,30 900,20 C1000,15 1100,5 1200,0 L1200,30 L0,30 Z' fill='{{ background_color|replace({'#': '%23'}) }}'/%3E%3C/svg%3E");
+  }
+</style>
+{% endif %}
+
+<section class="s-block s-block--icons py-10 md:py-16 {% if component.paper_tear_effect %}paper-tear-effect{% endif %}"
+         style="{% if component.background_color %}background-color: {{ component.background_color }};{% endif %}">
+  <div class="container">
+    {% if component.title %}
+      <div class="s-block__title mb-8 md:mb-10 text-center">
+        <h2 class="text-2xl md:text-3xl font-bold">{{ component.title }}</h2>
+        {% if component.subtitle %}
+          <p class="mt-2 text-sm md:text-base text-gray-500">{{ component.subtitle }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% set icon_count = component.icons|length %}
+    {% set grid_class = 'grid-cols-1' %}
+    {% if icon_count > 1 %}
+      {% set grid_class = 'grid-cols-2' %}
+    {% endif %}
+    {% if icon_count > 2 %}
+      {% set grid_class = 'grid-cols-2 sm:grid-cols-3' %}
+    {% endif %}
+    {% if icon_count > 3 %}
+      {% set grid_class = 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4' %}
+    {% endif %}
+    {% if icon_count > 4 %}
+      {% set grid_class = 'grid-cols-2 sm:grid-cols-3 md:grid-cols-6' %}
+    {% endif %}
+
+    <div class="grid {{ grid_class }} gap-4 md:gap-6 mx-auto max-w-screen-lg">
+      {% for icon in component.icons %}
+        {% set has_valid_url = false %}
+        {% if icon.url is defined and icon.url is not empty and icon.url != '' and icon.url != null and icon.url != '#' %}
+          {% set has_valid_url = true %}
+        {% endif %}
+
+        <div class="flex flex-col items-center justify-center p-4 text-center {% if has_valid_url %}has-link{% endif %}">
+          {% if icon.icon_image %}
+            <div class="icon-wrapper mb-3">
+              <img src="{{ icon.icon_image }}" alt="{{ icon.title }}" class="w-16 h-16 object-contain mx-auto">
+            </div>
+          {% endif %}
+          {% if icon.title %}
+            <h3 class="text-sm md:text-base font-medium">{{ icon.title }}</h3>
+          {% endif %}
+          {% if has_valid_url %}
+            <a href="{{ icon.url }}" class="absolute inset-0" aria-label="{{ icon.title }}"></a>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

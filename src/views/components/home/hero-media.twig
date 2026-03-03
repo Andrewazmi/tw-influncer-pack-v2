@@ -1,0 +1,45 @@
+{#
+| Variable                | Type    | Description                                  |
+|-------------------------|---------|----------------------------------------------|
+| component              | object  | Component settings from twilight.json         |
+#}
+
+<section class="s-block s-block--hero-media relative paper-tear-effect">
+  {% if component.hero_video_url %}
+    <video class="object-cover object-center w-full h-screen"
+           playsinline loop="loop"
+           src="{{ component.hero_video_url }}"
+           autoplay="autoplay"
+           muted="muted"></video>
+  {% elseif component.hero_image_url %}
+    <img src="{{ component.hero_image_url }}"
+         alt="{{ component.hero_title }}"
+         class="object-cover object-center w-full h-screen">
+  {% endif %}
+
+  <div class="absolute inset-0 flex flex-col justify-center items-center w-full px-3">
+    {% if component.hero_title %}
+      <h1 class="text-white md:text-4xl md:!leading-12 leading-8 md:w-[60%] text-xl text-center mb-4">{{ component.hero_title }}</h1>
+    {% endif %}
+
+    {% if component.hero_description %}
+      <p class="text-white md:text-xl text-base text-center md:w-[60%] mb-6">{{ component.hero_description }}</p>
+    {% endif %}
+  </div>
+
+  <!-- Decorative pattern overlay similar to the screenshot -->
+  <div class="absolute bottom-[70px] left-0 w-1/4 h-1/4 opacity-70 z-[4] pointer-events-none pattern-overlay"></div>
+</section>
+
+<script>
+  // Add transparent class to header immediately
+  document.querySelector('.store-header')?.classList.add('with-hero-section');
+
+  // Also add it on DOMContentLoaded to ensure it's applied
+  document.addEventListener('DOMContentLoaded', function() {
+    const header = document.querySelector('.store-header');
+    if (header) {
+      header.classList.add('with-hero-section');
+    }
+  });
+</script>

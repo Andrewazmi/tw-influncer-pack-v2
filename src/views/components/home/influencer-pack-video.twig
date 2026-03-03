@@ -1,0 +1,60 @@
+{#
+| Variable                | Type    | Description                                  |
+|-------------------------|---------|----------------------------------------------|
+| component               | object  | Component settings from twilight.json        |
+| position                | int     | Component order on home page                 |
+#}
+
+{% set section_id = 'influencer-pack-video-' ~ (position|default(0)) %}
+{% set button_position_raw = component.button_position|default(component.button_posistion|default('center')) %}
+{% set button_position = button_position_raw|json_encode|split('"')[1]|default('center') %}
+{% set button_justify = button_position == 'start' ? 'justify-start' : (button_position == 'end' ? 'justify-end' : 'justify-center') %}
+{% set button_url = component.button_url|default(component.alrabt|default(component.url|default(''))) %}
+{% set button_text_color = component.text_color_button|default('#ffffff') %}
+{% set button_bg_color = component.background_button_color|default('#004956') %}
+{% set video_src = component.video_banner|default('') %}
+{% set video_poster = component.video_poster|default('') %}
+
+<section id="{{ section_id }}" class="s-block s-block--influencer-pack-video relative">
+  {% if video_src %}
+    <video
+      class="influencer-pack-video__media js-influencer-pack-video"
+      playsinline
+      loop
+      preload="none"
+      data-src="{{ video_src|e('html_attr') }}"
+      {% if video_poster %}poster="{{ video_poster|e('html_attr') }}"{% endif %}
+      muted></video>
+    <noscript>
+      <video
+        class="influencer-pack-video__media"
+        playsinline
+        loop
+        src="{{ video_src|e('html_attr') }}"
+        {% if video_poster %}poster="{{ video_poster|e('html_attr') }}"{% endif %}
+        autoplay
+        muted></video>
+    </noscript>
+  {% endif %}
+
+  {% if component.title %}
+    <div class="influencer-pack-video__title-wrap">
+      <h2 class="influencer-pack-video__title">{{ component.title }}</h2>
+    </div>
+  {% endif %}
+
+  {% if component.button and button_url %}
+    <div class="influencer-pack-video__cta-row {{ button_justify }}">
+      <a href="{{ button_url }}" class="influencer-pack-video__button">
+        {{ component.button }}
+      </a>
+    </div>
+  {% endif %}
+</section>
+
+<style>
+  #{{ section_id }} .influencer-pack-video__button {
+    color: {{ button_text_color }};
+    background-color: {{ button_bg_color }};
+  }
+</style>
