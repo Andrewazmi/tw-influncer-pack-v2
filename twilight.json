@@ -1,1523 +1,231 @@
 {
-    "name": {
-        "ar": "مجموعة المؤثرين الشاملة",
-        "en": "Influncer Pack V2"
+  "name": {
+    "ar": "مجموعة المؤثرين الشاملة",
+    "en": "Influncer Pack V2"
+  },
+  "repository": "https://github.com/Andrewazmi/tw-influncer-pack-v2",
+  "author_email": "hiandrew@andrewazmi.com",
+  "support_url": "https://github.com/Andrewazmi/tw-influncer-pack-v2/issues",
+  "description": {
+    "ar": "ثيم يركز على عرض فيديوهات المؤثرين (Reels و TikTok) مع منتجات قابلة للشراء داخل التجربة.",
+    "en": "A theme focused on influencer video commerce with shoppable Reels and TikTok-based product discovery."
+  },
+  "features": [
+    "mega-menu",
+    "fonts",
+    "color",
+    "breadcrumb",
+    "unite-cards-height",
+    "component-featured-products",
+    "component-fixed-banner",
+    "component-fixed-products",
+    "component-products-slider",
+    "component-photos-slider",
+    "component-parallax-background",
+    "component-testimonials",
+    "component-square-photos",
+    "component-store-features",
+    "component-youtube",
+    "menu-images",
+    "filters"
+  ],
+  "settings": [
+    {
+      "id": "static-label3",
+      "type": "static",
+      "format": "title",
+      "label": "خيارات المتجر",
+      "value": null,
+      "variant": "h2",
+      "icon": "sicon-format-text"
     },
-    "repository": "https://github.com/Andrewazmi/tw-influncer-pack-v2",
-    "author_email": "hiandrew@andrewazmi.com",
-    "support_url": "https://github.com/Andrewazmi/tw-influncer-pack-v2/issues",
-    "description": {
-        "ar": "ثيم يركز على عرض فيديوهات المؤثرين (Reels و TikTok) مع منتجات قابلة للشراء داخل التجربة.",
-        "en": "A theme focused on influencer video commerce with shoppable Reels and TikTok-based product discovery."
+    {
+      "id": "albred_alilktrone_lltoasl",
+      "type": "string",
+      "format": "text",
+      "inputType": "email",
+      "label": "البريد الإلكتروني للتواصل",
+      "description": "سيظهر في الشريط العلوي للمتجر. اتركه فارغاً لإخفائه",
+      "labelHTML": null,
+      "placeholder": "contact@grovlix.com",
+      "icon": "sicon-at",
+      "value": null,
+      "required": false,
+      "minLength": 6,
+      "maxLength": 30
     },
-    "features": [
-        "mega-menu",
-        "fonts",
-        "color",
-        "breadcrumb",
-        "unite-cards-height",
-        "component-featured-products",
-        "component-fixed-banner",
-        "component-fixed-products",
-        "component-products-slider",
-        "component-photos-slider",
-        "component-parallax-background",
-        "component-testimonials",
-        "component-square-photos",
-        "component-store-features",
-        "component-youtube",
-        "menu-images",
-        "filters"
-    ],
-    "settings": [
+    {
+      "type": "boolean",
+      "icon": "sicon-toggle-off",
+      "label": "وضع عمودي للمنتجات في مربع المنتجات الثابتة في الصفحة الرئيسية",
+      "description": null,
+      "id": "vertical_fixed_products",
+      "format": "switch",
+      "required": false,
+      "value": false,
+      "selected": false
+    },
+    {
+      "type": "boolean",
+      "id": "is_more_button_enabled",
+      "label": "عرض (زر الكل) في الصفحة الرئيسية",
+      "format": "switch"
+    },
+    {
+      "type": "static",
+      "id": "static-line1",
+      "format": "line"
+    },
+    {
+      "type": "static",
+      "format": "title",
+      "id": "static-label2",
+      "value": "خيارات أعلى الصفحة",
+      "variant": "h6"
+    },
+    {
+      "id": "header_is_sticky",
+      "label": "تثبت القائمة الرئيسية أعلى الصفحة عند التمرير لأسفل",
+      "description": "يُنصح بالغاء تفعيلها في حالة وجود عناصر كثيرة في القائمة المنسدلة",
+      "type": "boolean",
+      "icon": "sicon-toggle-off",
+      "format": "switch",
+      "required": false,
+      "value": true,
+      "selected": true
+    },
+    {
+      "type": "boolean",
+      "icon": "sicon-toggle-off",
+      "label": "شريط علوي داكن",
+      "description": null,
+      "id": "topnav_is_dark",
+      "format": "switch",
+      "required": false,
+      "value": true,
+      "selected": false
+    },
+    {
+      "type": "boolean",
+      "icon": "sicon-toggle-off",
+      "label": "عرض روابط الصفحات الهامة في الشريط العلوي",
+      "description": "مثل صفحة الهبوط ، المدونة ،الصفحات التعريفية",
+      "id": "important_links",
+      "format": "switch",
+      "required": false,
+      "value": true,
+      "selected": true
+    },
+    {
+      "type": "static",
+      "id": "static-line3",
+      "format": "line"
+    },
+    {
+      "type": "static",
+      "format": "title",
+      "id": "static-label4",
+      "value": "خيارات أسفل الصفحة",
+      "variant": "h6"
+    },
+    {
+      "type": "boolean",
+      "icon": "sicon-toggle-off",
+      "label": "الوضع الداكن",
+      "description": null,
+      "id": "footer_is_dark",
+      "format": "switch",
+      "required": false,
+      "value": true,
+      "selected": false
+    },
+    {
+      "type": "static",
+      "id": "static-line5",
+      "format": "line"
+    },
+    {
+      "type": "static",
+      "format": "title",
+      "id": "static-label6",
+      "value": "خيارات صفحة المنتج",
+      "variant": "h6"
+    },
+    {
+      "type": "boolean",
+      "icon": "sicon-toggle-off",
+      "label": "تثبيت زر الإضافة والكمية أسفل شاشة الجوال",
+      "description": null,
+      "id": "sticky_add_to_cart",
+      "format": "switch",
+      "required": false,
+      "value": true,
+      "selected": true
+    },
+    {
+      "type": "boolean",
+      "icon": "sicon-toggle-off",
+      "label": "اظهار الوسوم",
+      "description": null,
+      "id": "show_tags",
+      "format": "switch",
+      "required": false,
+      "value": true,
+      "selected": true
+    },
+    {
+      "id": "slider_background_size",
+      "type": "items",
+      "format": "dropdown-list",
+      "label": "طريقة عرض الصور في سليدر صور المنتج",
+      "description": null,
+      "labelHTML": null,
+      "icon": "sicon-list",
+      "selected": [
         {
-            "id": "static-label3",
-            "type": "static",
-            "format": "title",
-            "label": "خيارات المتجر",
-            "value": null,
-            "variant": "h2",
-            "icon": "sicon-format-text"
-        },
-        {
-            "id": "albred_alilktrone_lltoasl",
-            "type": "string",
-            "format": "text",
-            "inputType": "email",
-            "label": "البريد الإلكتروني للتواصل",
-            "description": "سيظهر في الشريط العلوي للمتجر. اتركه فارغاً لإخفائه",
-            "labelHTML": null,
-            "placeholder": "contact@grovlix.com",
-            "icon": "sicon-at",
-            "value": null,
-            "required": false,
-            "minLength": 6,
-            "maxLength": 30
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-toggle-off",
-            "label": "وضع عمودي للمنتجات في مربع المنتجات الثابتة في الصفحة الرئيسية",
-            "description": null,
-            "id": "vertical_fixed_products",
-            "format": "switch",
-            "required": false,
-            "value": false,
-            "selected": false
-        },
-        {
-            "type": "boolean",
-            "id": "is_more_button_enabled",
-            "label": "عرض (زر الكل) في الصفحة الرئيسية",
-            "format": "switch"
-        },
-        {
-            "type": "static",
-            "id": "static-line1",
-            "format": "line"
-        },
-        {
-            "type": "static",
-            "format": "title",
-            "id": "static-label2",
-            "value": "خيارات أعلى الصفحة",
-            "variant": "h6"
-        },
-        {
-            "id": "header_is_sticky",
-            "label": "تثبت القائمة الرئيسية أعلى الصفحة عند التمرير لأسفل",
-            "description": "يُنصح بالغاء تفعيلها في حالة وجود عناصر كثيرة في القائمة المنسدلة",
-            "type": "boolean",
-            "icon": "sicon-toggle-off",
-            "format": "switch",
-            "required": false,
-            "value": true,
-            "selected": true
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-toggle-off",
-            "label": "شريط علوي داكن",
-            "description": null,
-            "id": "topnav_is_dark",
-            "format": "switch",
-            "required": false,
-            "value": true,
-            "selected": false
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-toggle-off",
-            "label": "عرض روابط الصفحات الهامة في الشريط العلوي",
-            "description": "مثل صفحة الهبوط ، المدونة ،الصفحات التعريفية",
-            "id": "important_links",
-            "format": "switch",
-            "required": false,
-            "value": true,
-            "selected": true
-        },
-        {
-            "type": "static",
-            "id": "static-line3",
-            "format": "line"
-        },
-        {
-            "type": "static",
-            "format": "title",
-            "id": "static-label4",
-            "value": "خيارات أسفل الصفحة",
-            "variant": "h6"
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-toggle-off",
-            "label": "الوضع الداكن",
-            "description": null,
-            "id": "footer_is_dark",
-            "format": "switch",
-            "required": false,
-            "value": true,
-            "selected": false
-        },
-        {
-            "type": "static",
-            "id": "static-line5",
-            "format": "line"
-        },
-        {
-            "type": "static",
-            "format": "title",
-            "id": "static-label6",
-            "value": "خيارات صفحة المنتج",
-            "variant": "h6"
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-toggle-off",
-            "label": "تثبيت زر الإضافة والكمية أسفل شاشة الجوال",
-            "description": null,
-            "id": "sticky_add_to_cart",
-            "format": "switch",
-            "required": false,
-            "value": true,
-            "selected": true
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-toggle-off",
-            "label": "اظهار الوسوم",
-            "description": null,
-            "id": "show_tags",
-            "format": "switch",
-            "required": false,
-            "value": true,
-            "selected": true
-        },
-        {
-            "id": "slider_background_size",
-            "type": "items",
-            "format": "dropdown-list",
-            "label": "طريقة عرض الصور في سليدر صور المنتج",
-            "description": null,
-            "labelHTML": null,
-            "icon": "sicon-list",
-            "selected": [
-                {
-                    "label": "اظهار الصورة كاملةً في المنتصف (Contain)",
-                    "value": "contain",
-                    "key": "f4adec13-6e4c-433b-b141-b2807935ced9"
-                }
-            ],
-            "options": [
-                {
-                    "label": "تغطية الصورة كامل المساحة مع المحافظة على النسبة الصورة (Cover)",
-                    "value": "cover",
-                    "key": "e9c8ea8f-c5c6-438e-9d45-3bce269afde4"
-                },
-                {
-                    "label": "اظهار الصورة كاملةً في المنتصف (Contain)",
-                    "value": "contain",
-                    "key": "f4adec13-6e4c-433b-b141-b2807935ced9"
-                }
-            ],
-            "source": "Manual",
-            "required": true
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-toggle-off",
-            "label": "تكبير الصور في سليدر صور المنتج",
-            "description": "هذه الخاصية تمكنك من تكبير الصورة لتسهل رؤية المزيد من التفاصيل بها",
-            "id": "imageZoom",
-            "format": "switch",
-            "required": false,
-            "value": false,
-            "selected": false
-        },
-        {
-            "id": "color",
-            "type": "string",
-            "format": "color",
-            "inputType": "color",
-            "label": "Color",
-            "description": null,
-            "labelHTML": null,
-            "icon": "sicon-format-fill",
-            "value": "#004956",
-            "required": false
+          "label": "اظهار الصورة كاملةً في المنتصف (Contain)",
+          "value": "contain",
+          "key": "f4adec13-6e4c-433b-b141-b2807935ced9"
         }
-    ],
-    "components": [
+      ],
+      "options": [
         {
-            "key": "e21f0d90-20a2-4b71-9a0f-912a73b1b811",
-            "title": "باقة المؤثرين",
-            "icon": "sicon-play-circle",
-            "path": "home.influencer-pack",
-            "fields": [
-                {
-                    "type": "static",
-                    "format": "description",
-                    "id": "influencer-pack-desc",
-                    "value": "<div style='padding-top:10px;margin-bottom:30px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden'><h6 style='margin-bottom:10px'>معاينة العنصر</h6><img src='https://raw.githubusercontent.com/Andrewazmi/tw-influncer-pack/main/public/images/component-previews/influencer-pack.png'></div>"
-                },
-                {
-                    "type": "string",
-                    "icon": "sicon-format-text-alt",
-                    "label": "عنوان القسم",
-                    "multilanguage": true,
-                    "id": "title",
-                    "value": {
-                        "ar": "اكتشف تجارب المؤثرين",
-                        "en": "Shop Creator Reels"
-                    },
-                    "required": false,
-                    "format": "text",
-                    "description": "عنوان رئيسي يظهر أعلى القسم",
-                    "placeholder": "اكتب عنوان القسم..."
-                },
-                {
-                    "type": "string",
-                    "icon": "sicon-typography",
-                    "label": "وصف القسم",
-                    "multilanguage": true,
-                    "id": "subtitle",
-                    "value": {
-                        "ar": "شاهد فيديوهات التجربة واختر المنتج المناسب مباشرة",
-                        "en": "Watch unboxing reels and order instantly"
-                    },
-                    "required": false,
-                    "format": "textarea",
-                    "description": "نص وصفي قصير تحت عنوان القسم",
-                    "placeholder": "اكتب وصف القسم..."
-                },
-                {
-                    "type": "static",
-                    "id": "reels-divider",
-                    "format": "line"
-                },
-                {
-                    "type": "boolean",
-                    "icon": "sicon-toggle-off",
-                    "label": "عرض سلايدر الريلز",
-                    "id": "show_reels",
-                    "format": "switch",
-                    "required": false,
-                    "value": true,
-                    "selected": true
-                },
-                {
-                    "type": "boolean",
-                    "icon": "sicon-toggle-off",
-                    "label": "تشغيل أول فيديو تلقائياً (صامت)",
-                    "id": "reels_autoplay",
-                    "format": "switch",
-                    "required": false,
-                    "value": true,
-                    "selected": true
-                },
-                {
-                    "type": "boolean",
-                    "icon": "sicon-toggle-off",
-                    "label": "بدء الفيديوهات بوضع صامت",
-                    "id": "reels_muted",
-                    "format": "switch",
-                    "required": false,
-                    "value": true,
-                    "selected": true
-                },
-                {
-                    "type": "string",
-                    "icon": "sicon-copy",
-                    "label": "نص زر نسخ الكود",
-                    "multilanguage": true,
-                    "id": "copy_code_button_text",
-                    "value": {
-                        "ar": "نسخ الكود",
-                        "en": "Copy code"
-                    },
-                    "required": false,
-                    "format": "text",
-                    "description": "النص الظاهر في زر نسخ الأكواد"
-                },
-                {
-                    "id": "copy_code_button_color",
-                    "type": "string",
-                    "format": "color",
-                    "inputType": "color",
-                    "label": "لون زر نسخ الكود",
-                    "icon": "sicon-format-fill",
-                    "value": "#111111",
-                    "required": false
-                },
-                {
-                    "id": "reels",
-                    "type": "collection",
-                    "format": "collection",
-                    "required": true,
-                    "minLength": 1,
-                    "maxLength": 12,
-                    "item_label": "فيديو",
-                    "value": [],
-                    "conditions": [
-                        {
-                            "id": "show_reels",
-                            "operation": "=",
-                            "value": true
-                        }
-                    ],
-                    "fields": [
-                        {
-                            "type": "string",
-                            "icon": "sicon-image",
-                            "label": "صورة الغلاف",
-                            "id": "reels.poster",
-                            "format": "image",
-                            "required": true,
-                            "value": null,
-                            "description": "صورة عمودية مقترحة 1080x1920"
-                        },
-                        {
-                            "type": "items",
-                            "icon": "sicon-video",
-                            "label": "نوع مصدر الفيديو",
-                            "id": "reels.video_mode",
-                            "format": "dropdown-list",
-                            "required": true,
-                            "selected": [
-                                {
-                                    "label": "رابط خارجي MP4/HLS",
-                                    "value": "external",
-                                    "key": "reels.video_mode-external-0"
-                                }
-                            ],
-                            "options": [
-                                {
-                                    "label": "رابط خارجي MP4/HLS",
-                                    "value": "external",
-                                    "key": "reels.video_mode-external-0"
-                                },
-                                {
-                                    "label": "YouTube ID",
-                                    "value": "youtube",
-                                    "key": "reels.video_mode-youtube-1"
-                                }
-                            ],
-                            "source": "Manual"
-                        },
-                        {
-                            "type": "string",
-                            "icon": "sicon-video",
-                            "label": "رابط الفيديو الخارجي",
-                            "id": "reels.video_url",
-                            "format": "url",
-                            "inputType": "url",
-                            "required": false,
-                            "value": null,
-                            "placeholder": "https://example.com/video.mp4"
-                        },
-                        {
-                            "type": "string",
-                            "icon": "sicon-youtube",
-                            "label": "YouTube Video ID",
-                            "id": "reels.youtube_id",
-                            "format": "text",
-                            "required": false,
-                            "value": null,
-                            "placeholder": "dQw4w9WgXcQ"
-                        },
-                        {
-                            "type": "string",
-                            "icon": "sicon-format-text-alt",
-                            "label": "اسم المؤثر داخل البطاقة",
-                            "multilanguage": true,
-                            "id": "reels.creator_name",
-                            "value": null,
-                            "required": false,
-                            "format": "text"
-                        },
-                        {
-                            "type": "string",
-                            "icon": "sicon-typography",
-                            "label": "وصف قصير للفيديو",
-                            "multilanguage": true,
-                            "id": "reels.caption",
-                            "value": null,
-                            "required": false,
-                            "format": "textarea"
-                        },
-                        {
-                            "type": "items",
-                            "icon": "sicon-keyboard_arrow_down",
-                            "label": "سلوك زر الطلب",
-                            "id": "reels.cta_mode",
-                            "format": "dropdown-list",
-                            "required": false,
-                            "selected": [
-                                {
-                                    "label": "تلقائي (منتجات ثم رابط)",
-                                    "value": "auto",
-                                    "key": "reels.cta_mode-auto-0"
-                                }
-                            ],
-                            "options": [
-                                {
-                                    "label": "تلقائي (منتجات ثم رابط)",
-                                    "value": "auto",
-                                    "key": "reels.cta_mode-auto-0"
-                                },
-                                {
-                                    "label": "منتجات الريل",
-                                    "value": "products",
-                                    "key": "reels.cta_mode-products-1"
-                                },
-                                {
-                                    "label": "رابط فقط",
-                                    "value": "link",
-                                    "key": "reels.cta_mode-link-2"
-                                }
-                            ],
-                            "source": "Manual"
-                        },
-                        {
-                            "type": "string",
-                            "icon": "sicon-format-text-alt",
-                            "label": "نص زر الطلب",
-                            "multilanguage": true,
-                            "id": "reels.cta_text",
-                            "value": {
-                                "ar": "اطلب الآن",
-                                "en": "Order now"
-                            },
-                            "required": false,
-                            "format": "text"
-                        },
-                        {
-                            "type": "string",
-                            "icon": "sicon-link",
-                            "label": "رابط الزر",
-                            "id": "reels.cta_url",
-                            "value": null,
-                            "required": false,
-                            "format": "url",
-                            "inputType": "url",
-                            "placeholder": "https://example.com"
-                        },
-                        {
-                            "id": "reels.products",
-                            "type": "items",
-                            "format": "dropdown-list",
-                            "label": "منتجات الريل",
-                            "description": "اختر المنتجات المرتبطة بهذا الفيديو (حد أقصى 8)",
-                            "icon": "sicon-keyboard_arrow_down",
-                            "selected": [],
-                            "options": [],
-                            "source": "products",
-                            "required": false,
-                            "searchable": true,
-                            "multichoice": true,
-                            "maxLength": 8,
-                            "value": []
-                        },
-                        {
-                            "id": "reels.primary_product",
-                            "type": "items",
-                            "format": "dropdown-list",
-                            "label": "المنتج الأساسي على البطاقة",
-                            "description": "يظهر في يسار الفيديو. إذا لم يتم اختياره سيتم استخدام أول منتج تلقائياً",
-                            "icon": "sicon-keyboard_arrow_down",
-                            "selected": [],
-                            "options": [],
-                            "source": "products",
-                            "required": false,
-                            "searchable": true,
-                            "multichoice": false,
-                            "value": null
-                        },
-                        {
-                            "type": "string",
-                            "icon": "sicon-discount-tag",
-                            "label": "كود خصم خاص بالفيديو",
-                            "id": "reels.promo_code",
-                            "value": null,
-                            "required": false,
-                            "format": "text"
-                        }
-                    ]
-                },
-                {
-                    "type": "static",
-                    "id": "promo-divider",
-                    "format": "line"
-                },
-                {
-                    "type": "boolean",
-                    "icon": "sicon-toggle-off",
-                    "label": "عرض بطاقات أكواد الخصم",
-                    "id": "show_promo_blocks",
-                    "format": "switch",
-                    "required": false,
-                    "value": true,
-                    "selected": true
-                },
-                {
-                    "id": "promo_blocks",
-                    "type": "collection",
-                    "format": "collection",
-                    "required": false,
-                    "minLength": 1,
-                    "maxLength": 8,
-                    "item_label": "بطاقة خصم",
-                    "value": [],
-                    "conditions": [
-                        {
-                            "id": "show_promo_blocks",
-                            "operation": "=",
-                            "value": true
-                        }
-                    ],
-                    "fields": [
-                        {
-                            "type": "string",
-                            "icon": "sicon-format-text-alt",
-                            "label": "عنوان البطاقة",
-                            "multilanguage": true,
-                            "id": "promo_blocks.title",
-                            "value": null,
-                            "required": false,
-                            "format": "text"
-                        },
-                        {
-                            "type": "string",
-                            "icon": "sicon-discount-tag",
-                            "label": "الكود",
-                            "id": "promo_blocks.code",
-                            "value": null,
-                            "required": true,
-                            "format": "text",
-                            "placeholder": "SAVE15"
-                        },
-                        {
-                            "type": "string",
-                            "icon": "sicon-typography",
-                            "label": "الوصف",
-                            "multilanguage": true,
-                            "id": "promo_blocks.description",
-                            "value": null,
-                            "required": false,
-                            "format": "textarea"
-                        },
-                        {
-                            "type": "string",
-                            "icon": "sicon-format-text-alt",
-                            "label": "نص الزر",
-                            "multilanguage": true,
-                            "id": "promo_blocks.cta_text",
-                            "value": null,
-                            "required": false,
-                            "format": "text"
-                        },
-                        {
-                            "type": "string",
-                            "icon": "sicon-link",
-                            "label": "رابط الزر",
-                            "id": "promo_blocks.cta_url",
-                            "value": null,
-                            "required": false,
-                            "format": "url",
-                            "inputType": "url",
-                            "placeholder": "https://example.com"
-                        }
-                    ]
-                },
-                {
-                    "type": "static",
-                    "id": "products-divider-2",
-                    "format": "line"
-                },
-                {
-                    "type": "boolean",
-                    "icon": "sicon-toggle-off",
-                    "label": "عرض المنتجات المختارة",
-                    "id": "show_picked_products",
-                    "format": "switch",
-                    "required": false,
-                    "value": true,
-                    "selected": true
-                },
-                {
-                    "type": "string",
-                    "icon": "sicon-format-text-alt",
-                    "label": "عنوان المنتجات المختارة",
-                    "multilanguage": true,
-                    "id": "picked_products_title",
-                    "value": {
-                        "ar": "منتجات مختارة لك",
-                        "en": "Picked Products"
-                    },
-                    "required": false,
-                    "format": "text",
-                    "conditions": [
-                        {
-                            "id": "show_picked_products",
-                            "operation": "=",
-                            "value": true
-                        }
-                    ]
-                },
-                {
-                    "id": "picked_products",
-                    "type": "items",
-                    "format": "dropdown-list",
-                    "label": "اختيار المنتجات",
-                    "description": "يمكنك اختيار حتى 12 منتجاً لعرضها أسفل الريلز",
-                    "icon": "sicon-keyboard_arrow_down",
-                    "selected": [],
-                    "options": [],
-                    "source": "products",
-                    "required": false,
-                    "searchable": true,
-                    "multichoice": true,
-                    "minLength": 1,
-                    "maxLength": 12,
-                    "value": [],
-                    "conditions": [
-                        {
-                            "id": "show_picked_products",
-                            "operation": "=",
-                            "value": true
-                        }
-                    ]
-                }
-            ]
+          "label": "تغطية الصورة كامل المساحة مع المحافظة على النسبة الصورة (Cover)",
+          "value": "cover",
+          "key": "e9c8ea8f-c5c6-438e-9d45-3bce269afde4"
         },
         {
-            "key": "6f0d8fd6-24a8-46f0-a9f7-3fe8a26f31fd",
-            "title": "باقة المؤثرين - فيديو مع زر",
-            "icon": "sicon-video",
-            "path": "home.influencer-pack-video",
-            "fields": [
-                {
-                    "type": "static",
-                    "format": "description",
-                    "id": "influencer-pack-video-desc",
-                    "value": "<div style='padding-top:10px;margin-bottom:30px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden'><h6 style='margin-bottom:10px'>معاينة العنصر</h6><img src='https://raw.githubusercontent.com/Andrewazmi/tw-influncer-pack/main/public/images/component-previews/influencer-pack-video.png'></div>"
-                },
-                {
-                    "id": "video_banner",
-                    "type": "string",
-                    "format": "url",
-                    "inputType": "url",
-                    "label": "رابط فيديو باقة المؤثرين",
-                    "description": "أدخل رابط مباشر لملف فيديو (MP4)",
-                    "placeholder": "https://example.com/video.mp4",
-                    "icon": "sicon-video",
-                    "value": null,
-                    "required": false
-                },
-                {
-                    "id": "video_poster",
-                    "type": "string",
-                    "format": "url",
-                    "inputType": "url",
-                    "label": "رابط صورة غلاف الفيديو",
-                    "description": "صورة تظهر قبل تحميل وتشغيل الفيديو",
-                    "placeholder": "https://example.com/video-poster.jpg",
-                    "icon": "sicon-image",
-                    "value": null,
-                    "required": false
-                },
-                {
-                    "id": "title",
-                    "type": "string",
-                    "format": "text",
-                    "label": "عنوان الفيديو",
-                    "description": "عنوان يظهر فوق فيديو باقة المؤثرين",
-                    "placeholder": "اكتب عنواناً رئيسياً",
-                    "icon": "sicon-format-text-alt",
-                    "value": null,
-                    "multilanguage": true,
-                    "required": false
-                },
-                {
-                    "id": "button_position",
-                    "type": "items",
-                    "format": "dropdown-list",
-                    "label": "موضع زر الدعوة",
-                    "icon": "sicon-keyboard_arrow_down",
-                    "selected": [
-                        {
-                            "label": "بالمنتصف",
-                            "value": "center",
-                            "key": "button_position-center-0"
-                        }
-                    ],
-                    "options": [
-                        {
-                            "label": "يسار",
-                            "value": "end",
-                            "key": "button_position-end-0"
-                        },
-                        {
-                            "label": "يمين",
-                            "value": "start",
-                            "key": "button_position-start-1"
-                        },
-                        {
-                            "label": "بالمنتصف",
-                            "value": "center",
-                            "key": "button_position-center-2"
-                        }
-                    ],
-                    "source": "Manual",
-                    "multichoice": false,
-                    "searchable": false,
-                    "required": false
-                },
-                {
-                    "id": "text_color_button",
-                    "type": "string",
-                    "format": "color",
-                    "inputType": "color",
-                    "label": "لون نص زر الدعوة",
-                    "icon": "sicon-format-color-text",
-                    "value": "#ffffff",
-                    "required": false
-                },
-                {
-                    "id": "background_button_color",
-                    "type": "string",
-                    "format": "color",
-                    "inputType": "color",
-                    "label": "لون خلفية زر الدعوة",
-                    "icon": "sicon-format-fill",
-                    "value": "#004956",
-                    "required": false
-                },
-                {
-                    "id": "button",
-                    "type": "string",
-                    "format": "text",
-                    "label": "نص زر الدعوة",
-                    "placeholder": "تسوق الآن",
-                    "icon": "sicon-format-text-alt",
-                    "value": null,
-                    "multilanguage": true,
-                    "required": false
-                },
-                {
-                    "type": "items",
-                    "icon": "sicon-link",
-                    "label": "رابط زر الدعوة",
-                    "id": "button_url",
-                    "value": null,
-                    "required": false,
-                    "format": "variable-list",
-                    "searchable": true,
-                    "source": "custom",
-                    "sources": [
-                        {
-                            "label": "منتج",
-                            "key": "products",
-                            "value": "products"
-                        },
-                        {
-                            "label": "تصنيف",
-                            "key": "categories",
-                            "value": "categories"
-                        },
-                        {
-                            "label": "ماركة تجارية",
-                            "key": "brands",
-                            "value": "brands"
-                        },
-                        {
-                            "label": "صفحة تعريفية",
-                            "key": "pages",
-                            "value": "pages"
-                        },
-                        {
-                            "label": "مقالة",
-                            "key": "blog_articles",
-                            "value": "blog_articles"
-                        },
-                        {
-                            "label": "تصنيف ضمن المدونة",
-                            "key": "blog_categories",
-                            "value": "blog_categories"
-                        },
-                        {
-                            "label": "صفحة تواصل معنا",
-                            "key": "contact_link",
-                            "value": "contact_link"
-                        },
-                        {
-                            "label": "الصفحة الرئيسية",
-                            "key": "home_link",
-                            "value": "home_link"
-                        },
-                        {
-                            "label": "كل المنتجات",
-                            "key": "products_link",
-                            "value": "products_link"
-                        },
-                        {
-                            "label": "التخفيضات",
-                            "key": "offers_link",
-                            "value": "offers_link"
-                        },
-                        {
-                            "label": "الماركات التجارية",
-                            "key": "brands_link",
-                            "value": "brands_link"
-                        },
-                        {
-                            "label": "المدونة",
-                            "key": "blog_link",
-                            "value": "blog_link"
-                        },
-                        {
-                            "label": "رابط خارجي",
-                            "key": "custom",
-                            "value": "custom"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "key": "28c3878c-5dbb-47c8-8f17-65fe2e5be1ca",
-            "title": "باقة المؤثرين تيك توك",
-            "icon": "sicon-video",
-            "path": "home.influencer-pack-tiktok",
-            "fields": [
-                {
-                    "type": "static",
-                    "format": "description",
-                    "id": "influencer-pack-tiktok-desc",
-                    "value": "<div style='padding-top:10px;margin-bottom:30px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden'><h6 style='margin-bottom:10px'>معاينة العنصر</h6><img src='https://raw.githubusercontent.com/Andrewazmi/tw-influncer-pack/main/public/images/component-previews/influencer-pack-tiktok.png'></div>"
-                },
-                {
-                    "type": "string",
-                    "icon": "sicon-format-text-alt",
-                    "label": "عنوان القسم",
-                    "multilanguage": true,
-                    "id": "title",
-                    "value": {
-                        "ar": "تجارب العملاء على تيك توك",
-                        "en": "TikTok In The Wild"
-                    },
-                    "required": false,
-                    "format": "text",
-                    "placeholder": "اكتب عنوان القسم..."
-                },
-                {
-                    "type": "string",
-                    "icon": "sicon-typography",
-                    "label": "وصف القسم",
-                    "multilanguage": true,
-                    "id": "subtitle",
-                    "value": {
-                        "ar": "فيديوهات واقعية من تيك توك تعرض المنتج وتجربة العملاء",
-                        "en": "Real customer videos from TikTok"
-                    },
-                    "required": false,
-                    "format": "textarea",
-                    "placeholder": "اكتب وصف القسم..."
-                },
-                {
-                    "id": "section_bg_color",
-                    "type": "string",
-                    "format": "color",
-                    "inputType": "color",
-                    "label": "لون خلفية القسم",
-                    "icon": "sicon-format-fill",
-                    "value": "#c9ddd1",
-                    "required": false
-                },
-                {
-                    "type": "items",
-                    "icon": "sicon-keyboard_arrow_down",
-                    "label": "حجم بطاقة الفيديو",
-                    "id": "card_size",
-                    "format": "dropdown-list",
-                    "required": false,
-                    "selected": [
-                        {
-                            "label": "متوسط",
-                            "value": "regular",
-                            "key": "card_size-regular-0"
-                        }
-                    ],
-                    "options": [
-                        {
-                            "label": "صغير",
-                            "value": "compact",
-                            "key": "card_size-compact-0"
-                        },
-                        {
-                            "label": "متوسط",
-                            "value": "regular",
-                            "key": "card_size-regular-1"
-                        },
-                        {
-                            "label": "كبير",
-                            "value": "large",
-                            "key": "card_size-large-2"
-                        }
-                    ],
-                    "source": "Manual"
-                },
-                {
-                    "type": "boolean",
-                    "icon": "sicon-toggle-off",
-                    "label": "عرض أسهم التنقل",
-                    "id": "show_navigation",
-                    "format": "switch",
-                    "required": false,
-                    "value": true,
-                    "selected": true
-                },
-                {
-                    "id": "nav_button_bg_color",
-                    "type": "string",
-                    "format": "color",
-                    "inputType": "color",
-                    "label": "لون خلفية أسهم التنقل",
-                    "icon": "sicon-format-fill",
-                    "value": "#dff0a8",
-                    "required": false,
-                    "conditions": [
-                        {
-                            "id": "show_navigation",
-                            "operation": "=",
-                            "value": true
-                        }
-                    ]
-                },
-                {
-                    "id": "nav_button_icon_color",
-                    "type": "string",
-                    "format": "color",
-                    "inputType": "color",
-                    "label": "لون أيقونة/حدود أسهم التنقل",
-                    "icon": "sicon-format-color-text",
-                    "value": "#5f4c4c",
-                    "required": false,
-                    "conditions": [
-                        {
-                            "id": "show_navigation",
-                            "operation": "=",
-                            "value": true
-                        }
-                    ]
-                },
-                {
-                    "id": "reels",
-                    "type": "collection",
-                    "format": "collection",
-                    "required": true,
-                    "minLength": 1,
-                    "maxLength": 12,
-                    "item_label": "فيديو TikTok",
-                    "value": [],
-                    "fields": [
-                        {
-                            "type": "string",
-                            "icon": "sicon-link",
-                            "label": "رابط فيديو TikTok",
-                            "id": "reels.tiktok_url",
-                            "format": "url",
-                            "inputType": "url",
-                            "required": true,
-                            "value": null,
-                            "placeholder": "https://www.tiktok.com/@username/video/1234567890"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "key": "a2ecf4a1-c36d-4db7-8e8d-3f0024de8f29",
-            "title": "أزرار متابعة السوشال العائمة",
-            "icon": "sicon-share-alt",
-            "path": "home.social-follow-floating",
-            "fields": [
-                {
-                    "type": "static",
-                    "format": "description",
-                    "id": "social-follow-floating-desc",
-                    "value": "<div style='padding-top:10px;margin-bottom:30px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden'><h6 style='margin-bottom:10px'>معاينة العنصر</h6><img src='https://raw.githubusercontent.com/Andrewazmi/tw-influncer-pack/main/public/images/component-previews/social-follow-floating.png'></div>"
-                },
-                {
-                    "type": "boolean",
-                    "icon": "sicon-toggle-off",
-                    "label": "تفعيل أزرار المتابعة العائمة",
-                    "id": "social_follow_enabled",
-                    "format": "switch",
-                    "required": false,
-                    "value": true,
-                    "selected": true
-                },
-                {
-                    "id": "social_follow_position",
-                    "type": "items",
-                    "format": "dropdown-list",
-                    "label": "موضع العنصر (سطح المكتب)",
-                    "icon": "sicon-list",
-                    "required": true,
-                    "selected": [
-                        {
-                            "label": "يمين المنتصف",
-                            "value": "right-center",
-                            "key": "social_follow_position-right-center-0"
-                        }
-                    ],
-                    "options": [
-                        {
-                            "label": "يسار المنتصف",
-                            "value": "left-center",
-                            "key": "social_follow_position-left-center-0"
-                        },
-                        {
-                            "label": "يمين المنتصف",
-                            "value": "right-center",
-                            "key": "social_follow_position-right-center-1"
-                        },
-                        {
-                            "label": "أسفل اليمين",
-                            "value": "bottom-right",
-                            "key": "social_follow_position-bottom-right-2"
-                        },
-                        {
-                            "label": "موضع مخصص",
-                            "value": "custom",
-                            "key": "social_follow_position-custom-3"
-                        }
-                    ],
-                    "source": "Manual"
-                },
-                {
-                    "id": "social_follow_mobile_mode",
-                    "type": "items",
-                    "format": "dropdown-list",
-                    "label": "عرض العنصر في الجوال",
-                    "icon": "sicon-smartphone",
-                    "required": true,
-                    "selected": [
-                        {
-                            "label": "شريط سفلي",
-                            "value": "bottom-dock",
-                            "key": "social_follow_mobile_mode-bottom-dock-0"
-                        }
-                    ],
-                    "options": [
-                        {
-                            "label": "شريط سفلي",
-                            "value": "bottom-dock",
-                            "key": "social_follow_mobile_mode-bottom-dock-0"
-                        },
-                        {
-                            "label": "عمودي عائم",
-                            "value": "floating-stack",
-                            "key": "social_follow_mobile_mode-floating-stack-1"
-                        }
-                    ],
-                    "source": "Manual"
-                },
-                {
-                    "id": "social_follow_style_preset",
-                    "type": "items",
-                    "format": "dropdown-list",
-                    "label": "نمط الألوان",
-                    "icon": "sicon-format-fill",
-                    "required": true,
-                    "selected": [
-                        {
-                            "label": "ألوان المنصات",
-                            "value": "brand",
-                            "key": "social_follow_style_preset-brand-0"
-                        }
-                    ],
-                    "options": [
-                        {
-                            "label": "ألوان المنصات",
-                            "value": "brand",
-                            "key": "social_follow_style_preset-brand-0"
-                        },
-                        {
-                            "label": "أحادي",
-                            "value": "monochrome",
-                            "key": "social_follow_style_preset-monochrome-1"
-                        },
-                        {
-                            "label": "مخصص",
-                            "value": "custom",
-                            "key": "social_follow_style_preset-custom-2"
-                        }
-                    ],
-                    "source": "Manual"
-                },
-                {
-                    "id": "social_follow_custom_bg_color",
-                    "type": "string",
-                    "format": "color",
-                    "inputType": "color",
-                    "label": "لون الخلفية المخصص",
-                    "icon": "sicon-format-fill",
-                    "value": "#111111",
-                    "required": false,
-                    "conditions": [
-                        {
-                            "id": "social_follow_style_preset",
-                            "operation": "=",
-                            "value": "custom"
-                        }
-                    ]
-                },
-                {
-                    "id": "social_follow_custom_icon_color",
-                    "type": "string",
-                    "format": "color",
-                    "inputType": "color",
-                    "label": "لون الأيقونة/النص المخصص",
-                    "icon": "sicon-format-color-text",
-                    "value": "#ffffff",
-                    "required": false,
-                    "conditions": [
-                        {
-                            "id": "social_follow_style_preset",
-                            "operation": "=",
-                            "value": "custom"
-                        }
-                    ]
-                },
-                {
-                    "id": "social_follow_icon_mode",
-                    "type": "items",
-                    "format": "dropdown-list",
-                    "label": "طريقة العرض",
-                    "icon": "sicon-grid",
-                    "required": true,
-                    "selected": [
-                        {
-                            "label": "أيقونة فقط",
-                            "value": "icon-only",
-                            "key": "social_follow_icon_mode-icon-only-0"
-                        }
-                    ],
-                    "options": [
-                        {
-                            "label": "أيقونة فقط",
-                            "value": "icon-only",
-                            "key": "social_follow_icon_mode-icon-only-0"
-                        },
-                        {
-                            "label": "أيقونة + نص",
-                            "value": "icon-label",
-                            "key": "social_follow_icon_mode-icon-label-1"
-                        }
-                    ],
-                    "source": "Manual"
-                },
-                {
-                    "id": "social_follow_size",
-                    "type": "items",
-                    "format": "dropdown-list",
-                    "label": "حجم الأزرار",
-                    "icon": "sicon-expand",
-                    "required": true,
-                    "selected": [
-                        {
-                            "label": "متوسط",
-                            "value": "regular",
-                            "key": "social_follow_size-regular-0"
-                        }
-                    ],
-                    "options": [
-                        {
-                            "label": "صغير",
-                            "value": "compact",
-                            "key": "social_follow_size-compact-0"
-                        },
-                        {
-                            "label": "متوسط",
-                            "value": "regular",
-                            "key": "social_follow_size-regular-1"
-                        },
-                        {
-                            "label": "كبير",
-                            "value": "large",
-                            "key": "social_follow_size-large-2"
-                        }
-                    ],
-                    "source": "Manual"
-                },
-                {
-                    "id": "social_follow_shape",
-                    "type": "items",
-                    "format": "dropdown-list",
-                    "label": "شكل الأزرار",
-                    "icon": "sicon-shape",
-                    "required": true,
-                    "selected": [
-                        {
-                            "label": "حبّة",
-                            "value": "pill",
-                            "key": "social_follow_shape-pill-0"
-                        }
-                    ],
-                    "options": [
-                        {
-                            "label": "ناعم",
-                            "value": "soft",
-                            "key": "social_follow_shape-soft-0"
-                        },
-                        {
-                            "label": "حبّة",
-                            "value": "pill",
-                            "key": "social_follow_shape-pill-1"
-                        },
-                        {
-                            "label": "مربع",
-                            "value": "square",
-                            "key": "social_follow_shape-square-2"
-                        }
-                    ],
-                    "source": "Manual"
-                },
-                {
-                    "id": "social_follow_desktop_offset_x",
-                    "type": "string",
-                    "format": "number",
-                    "inputType": "number",
-                    "label": "إزاحة أفقية (سطح المكتب)",
-                    "icon": "sicon-expand-alt",
-                    "value": 20,
-                    "required": false
-                },
-                {
-                    "id": "social_follow_desktop_offset_y",
-                    "type": "string",
-                    "format": "number",
-                    "inputType": "number",
-                    "label": "إزاحة عمودية (سطح المكتب)",
-                    "icon": "sicon-expand-alt",
-                    "value": 20,
-                    "required": false
-                },
-                {
-                    "id": "social_follow_mobile_offset_x",
-                    "type": "string",
-                    "format": "number",
-                    "inputType": "number",
-                    "label": "إزاحة أفقية (الجوال)",
-                    "icon": "sicon-expand-alt",
-                    "value": 0,
-                    "required": false
-                },
-                {
-                    "id": "social_follow_mobile_offset_y",
-                    "type": "string",
-                    "format": "number",
-                    "inputType": "number",
-                    "label": "إزاحة عمودية (الجوال)",
-                    "icon": "sicon-expand-alt",
-                    "value": 14,
-                    "required": false
-                },
-                {
-                    "type": "boolean",
-                    "icon": "sicon-toggle-off",
-                    "label": "إظهار النص في الجوال عند نمط (أيقونة + نص)",
-                    "id": "social_follow_show_mobile_labels",
-                    "format": "switch",
-                    "required": false,
-                    "value": false,
-                    "selected": false,
-                    "conditions": [
-                        {
-                            "id": "social_follow_icon_mode",
-                            "operation": "=",
-                            "value": "icon-label"
-                        }
-                    ]
-                },
-                {
-                    "type": "boolean",
-                    "icon": "sicon-toggle-off",
-                    "label": "زر فتح/إغلاق في الجوال",
-                    "id": "social_follow_expandable_mobile",
-                    "format": "switch",
-                    "required": false,
-                    "value": true,
-                    "selected": true
-                },
-                {
-                    "type": "boolean",
-                    "icon": "sicon-toggle-off",
-                    "label": "فتح افتراضي في الجوال",
-                    "id": "social_follow_default_expanded_mobile",
-                    "format": "switch",
-                    "required": false,
-                    "value": false,
-                    "selected": false,
-                    "conditions": [
-                        {
-                            "id": "social_follow_expandable_mobile",
-                            "operation": "=",
-                            "value": true
-                        }
-                    ]
-                },
-                {
-                    "type": "boolean",
-                    "icon": "sicon-toggle-off",
-                    "label": "تفعيل Instagram",
-                    "id": "social_follow_instagram_enabled",
-                    "format": "switch",
-                    "required": false,
-                    "value": false,
-                    "selected": false
-                },
-                {
-                    "id": "social_follow_instagram_url",
-                    "type": "string",
-                    "format": "url",
-                    "inputType": "url",
-                    "label": "رابط Instagram",
-                    "icon": "sicon-link",
-                    "value": null,
-                    "required": false,
-                    "placeholder": "https://instagram.com/username",
-                    "conditions": [
-                        {
-                            "id": "social_follow_instagram_enabled",
-                            "operation": "=",
-                            "value": true
-                        }
-                    ]
-                },
-                {
-                    "type": "boolean",
-                    "icon": "sicon-toggle-off",
-                    "label": "تفعيل TikTok",
-                    "id": "social_follow_tiktok_enabled",
-                    "format": "switch",
-                    "required": false,
-                    "value": false,
-                    "selected": false
-                },
-                {
-                    "id": "social_follow_tiktok_url",
-                    "type": "string",
-                    "format": "url",
-                    "inputType": "url",
-                    "label": "رابط TikTok",
-                    "icon": "sicon-link",
-                    "value": null,
-                    "required": false,
-                    "placeholder": "https://www.tiktok.com/@username",
-                    "conditions": [
-                        {
-                            "id": "social_follow_tiktok_enabled",
-                            "operation": "=",
-                            "value": true
-                        }
-                    ]
-                },
-                {
-                    "type": "boolean",
-                    "icon": "sicon-toggle-off",
-                    "label": "تفعيل Snapchat",
-                    "id": "social_follow_snapchat_enabled",
-                    "format": "switch",
-                    "required": false,
-                    "value": false,
-                    "selected": false
-                },
-                {
-                    "id": "social_follow_snapchat_url",
-                    "type": "string",
-                    "format": "url",
-                    "inputType": "url",
-                    "label": "رابط Snapchat",
-                    "icon": "sicon-link",
-                    "value": null,
-                    "required": false,
-                    "placeholder": "https://www.snapchat.com/add/username",
-                    "conditions": [
-                        {
-                            "id": "social_follow_snapchat_enabled",
-                            "operation": "=",
-                            "value": true
-                        }
-                    ]
-                },
-                {
-                    "type": "boolean",
-                    "icon": "sicon-toggle-off",
-                    "label": "تفعيل YouTube",
-                    "id": "social_follow_youtube_enabled",
-                    "format": "switch",
-                    "required": false,
-                    "value": false,
-                    "selected": false
-                },
-                {
-                    "id": "social_follow_youtube_url",
-                    "type": "string",
-                    "format": "url",
-                    "inputType": "url",
-                    "label": "رابط YouTube",
-                    "icon": "sicon-link",
-                    "value": null,
-                    "required": false,
-                    "placeholder": "https://www.youtube.com/@channel",
-                    "conditions": [
-                        {
-                            "id": "social_follow_youtube_enabled",
-                            "operation": "=",
-                            "value": true
-                        }
-                    ]
-                },
-                {
-                    "type": "boolean",
-                    "icon": "sicon-toggle-off",
-                    "label": "تفعيل X",
-                    "id": "social_follow_x_enabled",
-                    "format": "switch",
-                    "required": false,
-                    "value": false,
-                    "selected": false
-                },
-                {
-                    "id": "social_follow_x_url",
-                    "type": "string",
-                    "format": "url",
-                    "inputType": "url",
-                    "label": "رابط X",
-                    "icon": "sicon-link",
-                    "value": null,
-                    "required": false,
-                    "placeholder": "https://x.com/username",
-                    "conditions": [
-                        {
-                            "id": "social_follow_x_enabled",
-                            "operation": "=",
-                            "value": true
-                        }
-                    ]
-                },
-                {
-                    "type": "boolean",
-                    "icon": "sicon-toggle-off",
-                    "label": "تفعيل WhatsApp",
-                    "id": "social_follow_whatsapp_enabled",
-                    "format": "switch",
-                    "required": false,
-                    "value": false,
-                    "selected": false
-                },
-                {
-                    "id": "social_follow_whatsapp_url",
-                    "type": "string",
-                    "format": "url",
-                    "inputType": "url",
-                    "label": "رابط WhatsApp",
-                    "icon": "sicon-link",
-                    "value": null,
-                    "required": false,
-                    "placeholder": "https://wa.me/966500000000",
-                    "conditions": [
-                        {
-                            "id": "social_follow_whatsapp_enabled",
-                            "operation": "=",
-                            "value": true
-                        }
-                    ]
-                }
-            ]
+          "label": "اظهار الصورة كاملةً في المنتصف (Contain)",
+          "value": "contain",
+          "key": "f4adec13-6e4c-433b-b141-b2807935ced9"
         }
-    ]
+      ],
+      "source": "Manual",
+      "required": true
+    },
+    {
+      "type": "boolean",
+      "icon": "sicon-toggle-off",
+      "label": "تكبير الصور في سليدر صور المنتج",
+      "description": "هذه الخاصية تمكنك من تكبير الصورة لتسهل رؤية المزيد من التفاصيل بها",
+      "id": "imageZoom",
+      "format": "switch",
+      "required": false,
+      "value": false,
+      "selected": false
+    },
+    {
+      "id": "color",
+      "type": "string",
+      "format": "color",
+      "inputType": "color",
+      "label": "Color",
+      "description": null,
+      "labelHTML": null,
+      "icon": "sicon-format-fill",
+      "value": "#004956",
+      "required": false
+    }
+  ],
+  "components": []
 }
