@@ -16,7 +16,7 @@
   },
   "author": "hiandrew@andrewazmi.com",
   "dependencies": {
-    "@salla.sa/twilight": "^2.14.76",
+    "@salla.sa/twilight": "^2.14.367",
     "@salla.sa/twilight-tailwind-theme": "^2.14.76",
     "animejs": "^3.2.2",
     "fslightbox": "^3.5.1",
